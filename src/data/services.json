@@ -1,0 +1,66 @@
+[
+  {
+    "id": "comparacion-afip",
+    "slug": "comparacion-afip",
+    "title": "Comparación Comprobantes AFIP",
+    "description": "Cruce AFIP vs Onvio para detectar faltantes y diferencias.",
+    "longDescription": "Pipeline que descarga, limpia y compara comprobantes emitidos/recibidos, con reportes y evidencias.",
+    "iconName": "scale",
+    "advantages": [
+      "Detección automática de faltantes",
+      "Normalización de columnas",
+      "Reporte listo para auditoría"
+    ],
+    "href": "/services/comparacion-afip"
+  },
+  {
+    "id": "asiento-costos",
+    "slug": "asiento-costos",
+    "title": "Asiento de Costos",
+    "description": "Generación de asientos contables desde plantillas.",
+    "longDescription": "Construye asientos mensuales a partir de planillas y reglas de negocio por cliente.",
+    "iconName": "ledger",
+    "advantages": ["Mapeo dinámico de cuentas", "Validaciones previas", "Listo para Onvio"],
+    "href": "/services/asiento-costos"
+  },
+  {
+    "id": "mis-comprobantes",
+    "slug": "mis-comprobantes",
+    "title": "Descarga Mis Comprobantes",
+    "description": "Bot de extracción AFIP con evidencias.",
+    "longDescription": "Baja masiva por CUIT, fechas y tipo, con manejo de popups y conversión XLS→XLSX.",
+    "iconName": "download",
+    "advantages": ["Sesión robusta", "Soporte masivo", "Logs detallados"],
+    "href": "/services/mis-comprobantes"
+  },
+  {
+    "id": "reporte-iva",
+    "slug": "reporte-iva",
+    "title": "Reporte IVA Ventas/Compras",
+    "description": "Consolidado de IVA por período.",
+    "longDescription": "Integra fuentes (Onvio/AFIP) y entrega un Excel final con tabs por circuito.",
+    "iconName": "table",
+    "advantages": ["Formato estándar", "Filtros por circuito", "Trazabilidad"],
+    "href": "/services/reporte-iva"
+  },
+  {
+    "id": "conciliacion-mp",
+    "slug": "conciliacion-mp",
+    "title": "Conciliación Mercado Pago",
+    "description": "Cruce de extractos vs ventas.",
+    "longDescription": "Normaliza fees y ajustes, detecta desvíos y genera asientos sugeridos.",
+    "iconName": "bank",
+    "advantages": ["Normalización de fees", "Alertas de desvío", "Asiento sugerido"],
+    "href": "/services/conciliacion-mp"
+  },
+  {
+    "id": "gordon-agent",
+    "slug": "gordon-agent",
+    "title": "Gordon (meal agent)",
+    "description": "Agente de menús y compras.",
+    "longDescription": "Planifica menús semanales y genera listas de compras optimizadas.",
+    "iconName": "chef",
+    "advantages": ["Plan semanal", "Optimización de compras", "Preferencias del usuario"],
+    "href": "/services/gordon-agent"
+  }
+]
