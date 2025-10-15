@@ -30,10 +30,4 @@ npm run preview  # sirve el build para verificación manual
 - `src/provider/Provider.jsx`: configuración global de la app.
 - `src/styles/index.css`: directivas de Tailwind y ajustes globales.
 
-## Próximos pasos sugeridos
-- Conectar `FormsDetail` con un endpoint real (webhook o ruta interna).
-- Agregar más secciones en la barra de navegación usando `Navbar`.
-- Extender la data en `src/data/services.json` o integrar un CMS.
-
-¡Listo! Con `npm run dev` podés revisar la SPA, validar la accesibilidad básica y ajustar el contenido según la necesidad del equipo de marketing o ventas.
 

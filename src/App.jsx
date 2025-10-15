@@ -23,7 +23,7 @@ export default function App() {
       </main>
 
       <footer className="border-t bg-white">
-        <Container className="py-6 text-sm text-gray-600">
+        <Container className="py-6 text-center text-sm text-gray-600">
           &copy; {new Date().getFullYear()} Bot Hub
         </Container>
       </footer>

@@ -20,7 +20,7 @@ function getDefaultConfig() {
   return {
     basePath: '/',                       // si publicás en GitHub Pages: '/bot-hub/'
     linkStrategy: 'internal',            // navegación SPA por defecto
-    contact: { mode: 'route', url: '' }, // lo definirá el PM luego
+    contact: { mode: 'route', url: '' }, // Lo define Fran después
     theme: {}                            // override opcional de tokens
   }
 }
