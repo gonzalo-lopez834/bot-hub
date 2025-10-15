@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
+import FormsDetail from './FormsDetail'
 import { useServices } from '../hooks/useServices'
 
 export default function ServiceDetailView() {
@@ -37,13 +38,7 @@ export default function ServiceDetailView() {
         </>
       )}
 
-      {/* Placeholder del Form: en el paso 3 lo completamos */}
-      <div className="mt-8 rounded-lg border p-4">
-        <p className="font-medium mb-2">Contacto</p>
-        <p className="text-sm text-[var(--muted-foreground)]">
-          Pronto agregamos el formulario (UI-only) para {service.title}.
-        </p>
-      </div>
+      <FormsDetail service={service} />
     </Wrapper>
   )
 }
