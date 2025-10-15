@@ -52,15 +52,5 @@
     "iconName": "bank",
     "advantages": ["Normalización de fees", "Alertas de desvío", "Asiento sugerido"],
     "href": "/services/conciliacion-mp"
-  },
-  {
-    "id": "gordon-agent",
-    "slug": "gordon-agent",
-    "title": "Gordon (meal agent)",
-    "description": "Agente de menús y compras.",
-    "longDescription": "Planifica menús semanales y genera listas de compras optimizadas.",
-    "iconName": "chef",
-    "advantages": ["Plan semanal", "Optimización de compras", "Preferencias del usuario"],
-    "href": "/services/gordon-agent"
   }
 ]
