@@ -1,5 +1,7 @@
+// src/components/LandingGrid.jsx
 import { Link } from 'react-router-dom'
 import { useServices } from '../hooks/useServices'
+import Icon from './Icon'
 
 export default function LandingGrid() {
   const { services, loading, error } = useServices()
@@ -16,9 +18,18 @@ export default function LandingGrid() {
           const to = `/services/${s.slug ?? s.id}`
           return (
             <li key={s.id} className="rounded-lg border bg-[var(--card)] text-[var(--card-foreground)]">
-              <Link to={to} className="block p-4 hover:bg-[var(--accent)]">
-                <h3 className="font-medium">{s.title}</h3>
-                <p className="text-sm text-[var(--muted-foreground)] mt-1 line-clamp-3">{s.description}</p>
+              <Link to={to} className="block p-4 hover:bg-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] rounded-lg">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-[var(--primary)]">
+                    <Icon name={s.iconName} className="w-6 h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-medium truncate">{s.title}</h3>
+                    <p className="text-sm text-[var(--muted-foreground)] mt-1 truncate">
+                      {s.description}
+                    </p>
+                  </div>
+                </div>
               </Link>
             </li>
           )
