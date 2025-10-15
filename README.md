@@ -1,16 +1,39 @@
-# React + Vite
+# Bot Hub · Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA creada con React y Vite para presentar el catálogo de servicios de automatización de Bot Hub. Incluye listados, detalle de cada servicio y un formulario de contacto UI-only listo para conectarse con una API real.
 
-Currently, two official plugins are available:
+## Características principales
+- Grid responsiva de servicios con cartas interactivas y jerarquía visual clara.
+- Vista de detalle con ventajas, iconografía y formulario contextual.
+- Configuración centralizada (`Provider`) para rutas, enlaces y modo de contacto.
+- Accesibilidad reforzada: skip link, navegación con `NavLink` + `aria-current`, estados de foco visibles.
+- Estilos con Tailwind CSS y utilidades personalizadas en `src/styles/index.css`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requisitos
+- Node.js 18+
+- npm (o pnpm/yarn adaptando los comandos)
 
-## React Compiler
+## Scripts útiles
+```bash
+npm install      # dependencias
+npm run dev      # modo desarrollo (http://localhost:5173)
+npm run build    # build de producción
+npm run preview  # sirve el build para verificación manual
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estructura relevante
+- `src/App.jsx`: layout principal, skip link, navbar y routers.
+- `src/components/Container.jsx`: contenedor reutilizable para el ancho máximo.
+- `src/components/LandingGrid.jsx`: listado de servicios con cards hover.
+- `src/components/ServiceDetailView.jsx`: detalle, ventajas y `FormsDetail`.
+- `src/components/FormsDetail.jsx`: formulario accesible (envío simulado).
+- `src/provider/Provider.jsx`: configuración global de la app.
+- `src/styles/index.css`: directivas de Tailwind y ajustes globales.
 
-## Expanding the ESLint configuration
+## Próximos pasos sugeridos
+- Conectar `FormsDetail` con un endpoint real (webhook o ruta interna).
+- Agregar más secciones en la barra de navegación usando `Navbar`.
+- Extender la data en `src/data/services.json` o integrar un CMS.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+¡Listo! Con `npm run dev` podés revisar la SPA, validar la accesibilidad básica y ajustar el contenido según la necesidad del equipo de marketing o ventas.
+
