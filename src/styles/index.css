@@ -15,3 +15,16 @@
 }
 
 html, body, #root { height: 100%; background: var(--background); color: var(--foreground); }
+
+/* Base legible y suavizado */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-feature-settings: "kern"; font-kerning: normal; }
+
+/* Estados de foco visibles (fallback si falta ring en el comp) */
+a:focus,
+button:focus { outline: none; }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
