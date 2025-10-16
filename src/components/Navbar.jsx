@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <>
       <header className="border-b bg-white relative z-30">
-        <Container className="flex items-center justify-between gap-6 py-3">
+        <Container className="flex items-center justify-between gap-6 py-3 max-w-7xl">
           <div className="flex-1 text-center">
             <NavLink to="/" className="inline-block">
               <GradientText

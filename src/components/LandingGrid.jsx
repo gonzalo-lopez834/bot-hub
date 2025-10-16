@@ -14,7 +14,6 @@ export default function LandingGrid() {
       <Hero />
       
       <section id="servicios" className="px-4 sm:px-6 py-12">
-        <h2 className="text-3xl font-semibold tracking-tight mb-6">Nuestros Servicios</h2>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s) => {

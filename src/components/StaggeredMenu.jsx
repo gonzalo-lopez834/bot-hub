@@ -41,6 +41,7 @@ export default function StaggeredMenu({
 
   const toggleBtnRef = useRef(null)
   const busyRef = useRef(false)
+  const headerRef = useRef(null)
 
   const itemEntranceTweenRef = useRef(null)
 
@@ -73,7 +74,28 @@ export default function StaggeredMenu({
 
       if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor })
     })
-    return () => ctx.revert()
+    // Also keep the fixed staggered header vertically matching the page header.
+    function updateHeaderHeight() {
+      try {
+        const siteHeader = document.querySelector('header')
+        if (headerRef.current && siteHeader) {
+          headerRef.current.style.height = siteHeader.offsetHeight + 'px'
+          // ensure vertical centering
+          headerRef.current.style.display = 'flex'
+          headerRef.current.style.alignItems = 'center'
+        }
+      } catch {
+        // ignore in non-DOM environments
+      }
+    }
+
+    updateHeaderHeight()
+    window.addEventListener('resize', updateHeaderHeight)
+
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight)
+      ctx.revert()
+    }
   }, [menuButtonColor, position])
 
   const buildOpenTimeline = useCallback(() => {
@@ -343,60 +365,109 @@ export default function StaggeredMenu({
         </div>
 
         <div
-          className={`staggered-menu-header ${isFixed ? 'fixed' : 'absolute'} top-0 ${isFixed ? 'right-0' : 'left-0 w-full'} flex items-center ${isFixed ? 'justify-end' : 'justify-between'} ${isFixed ? 'p-4' : 'p-[2em]'} bg-transparent pointer-events-none z-50`}
+          ref={headerRef}
+          className={`staggered-menu-header ${isFixed ? 'fixed' : 'absolute'} top-0 ${isFixed ? 'right-0' : 'left-0 w-full'} flex items-center ${isFixed ? 'justify-end' : 'justify-between'} ${isFixed ? 'py-3 pr-4' : 'p-[2em]'} bg-transparent pointer-events-none z-50`}
           aria-label="Main navigation header"
         >
-          {logoUrl && !isFixed && (
-            <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
-              <img
-                src={logoUrl}
-                alt="Logo"
-                className="sm-logo-img block h-8 w-auto object-contain"
-                draggable={false}
-                width={110}
-                height={24}
-              />
-            </div>
-          )}
-
-          <button
-            ref={toggleBtnRef}
-            className="sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer text-[#e9e9ef] font-medium leading-none overflow-visible pointer-events-auto"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            aria-controls="staggered-menu-panel"
-            onClick={toggleMenu}
-            type="button"
-          >
-            <span
-              ref={textWrapRef}
-              className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
-              aria-hidden="true"
-            >
-              <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
-                {textLines.map((l, i) => (
-                  <span className="sm-toggle-line block h-[1em] leading-none" key={i}>
-                    {l}
+          {/* When the menu header is fixed we render an internal centered container so the
+              fixed button aligns horizontally with the site's main Container (mx-auto max-w-6xl px-4). */}
+          {isFixed ? (
+            <div className="mx-auto w-full max-w-7xl px-4 flex items-center justify-end pointer-events-auto">
+              <button
+                ref={toggleBtnRef}
+                className="sm-toggle relative inline-flex items-center gap-[0.5rem] bg-transparent border-0 cursor-pointer text-[#374151] font-semibold leading-none overflow-visible pointer-events-auto text-[1.5em]"
+                aria-label={open ? 'Close menu' : 'Open menu'}
+                aria-expanded={open}
+                aria-controls="staggered-menu-panel"
+                onClick={toggleMenu}
+                type="button"
+              >
+                <span
+                  ref={textWrapRef}
+                  className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
+                  aria-hidden="true"
+                >
+                  <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
+                    {textLines.map((l, i) => (
+                      <span className="sm-toggle-line block h-[1em] leading-none" key={i}>
+                        {l}
+                      </span>
+                    ))}
                   </span>
-                ))}
-              </span>
-            </span>
+                </span>
 
-            <span
-              ref={iconRef}
-              className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center [will-change:transform]"
-              aria-hidden="true"
-            >
-              <span
-                ref={plusHRef}
-                className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
-              />
-              <span
-                ref={plusVRef}
-                className="sm-icon-line sm-icon-line-v absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
-              />
-            </span>
-          </button>
+                <span
+                  ref={iconRef}
+                  className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center [will-change:transform]"
+                  aria-hidden="true"
+                >
+                  <span
+                    ref={plusHRef}
+                    className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                  />
+                  <span
+                    ref={plusVRef}
+                    className="sm-icon-line sm-icon-line-v absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                  />
+                </span>
+              </button>
+            </div>
+          ) : (
+            // Non-fixed header — keep previous layout (logo + button)
+            <>
+              {logoUrl && (
+                <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
+                  <img
+                    src={logoUrl}
+                    alt="Logo"
+                    className="sm-logo-img block h-8 w-auto object-contain"
+                    draggable={false}
+                    width={110}
+                    height={24}
+                  />
+                </div>
+              )}
+
+              <button
+                ref={toggleBtnRef}
+                className="sm-toggle relative inline-flex items-center gap-[0.5rem] bg-transparent border-0 cursor-pointer text-[#e9e9ef] font-semibold leading-none overflow-visible pointer-events-auto text-[1.5em]"
+                aria-label={open ? 'Close menu' : 'Open menu'}
+                aria-expanded={open}
+                aria-controls="staggered-menu-panel"
+                onClick={toggleMenu}
+                type="button"
+              >
+                <span
+                  ref={textWrapRef}
+                  className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
+                  aria-hidden="true"
+                >
+                  <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
+                    {textLines.map((l, i) => (
+                      <span className="sm-toggle-line block h-[1em] leading-none" key={i}>
+                        {l}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+
+                <span
+                  ref={iconRef}
+                  className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center [will-change:transform]"
+                  aria-hidden="true"
+                >
+                  <span
+                    ref={plusHRef}
+                    className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                  />
+                  <span
+                    ref={plusVRef}
+                    className="sm-icon-line sm-icon-line-v absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                  />
+                </span>
+              </button>
+            </>
+          )}
         </div>
 
         <aside
@@ -480,9 +551,9 @@ export default function StaggeredMenu({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100vh; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; }
+.sm-scope .staggered-menu-panel { top: 0; right: 0; width: clamp(260px, 35vw, 360px); height: 100vh; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
-.sm-scope .sm-prelayers { top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; }
+.sm-scope .sm-prelayers { top: 0; right: 0; bottom: 0; width: clamp(260px, 35vw, 360px); pointer-events: none; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
 .sm-scope .sm-prelayer { position: absolute; top: 0; right: 0; height: 100%; width: 100%; transform: translateX(0); }
 .sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; }

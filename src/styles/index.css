@@ -12,9 +12,10 @@
   --accent: #f4f4f5;
   --muted-foreground: #6b7280;
   --radius: 0.5rem;
+  --font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-html, body, #root { height: 100%; background: var(--background); color: var(--foreground); }
+html, body, #root { height: 100%; background: var(--background); color: var(--foreground); font-family: var(--font-family); }
 
 /* Base legible y suavizado */
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
