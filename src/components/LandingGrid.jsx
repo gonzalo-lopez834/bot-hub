@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useServices } from '../hooks/useServices'
 import Icon from './Icon'
+import Hero from './Hero'
 
 export default function LandingGrid() {
   const { services, loading, error } = useServices()
@@ -9,8 +10,11 @@ export default function LandingGrid() {
   if (error) return <div className="py-10 text-red-600">Error: {error}</div>
 
   return (
-    <section className="py-2">
-      <h1 className="text-3xl font-semibold tracking-tight mb-6">Servicios</h1>
+    <div className="-mx-4 sm:-mx-6">
+      <Hero />
+      
+      <section id="servicios" className="px-4 sm:px-6 py-12">
+        <h2 className="text-3xl font-semibold tracking-tight mb-6">Nuestros Servicios</h2>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s) => {
@@ -37,7 +41,8 @@ export default function LandingGrid() {
           )
         })}
       </ul>
-    </section>
+      </section>
+    </div>
   )
 }
 
