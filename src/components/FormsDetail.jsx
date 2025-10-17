@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useContactForm } from '../hooks/useContactForm'
-import { useAppConfig } from '../provider/Provider'
+import { useAppConfig } from '../hooks/useLinkHandler'
 
 export default function FormsDetail({ service, className = 'mt-8' }) {
   const alertRef = useRef(null)

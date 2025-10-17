@@ -56,7 +56,7 @@ export function useContactForm(initial = {}) {
       // Si en el futuro tenemos endpoint:
       // await fetch(contact.url, { method:'POST', body: JSON.stringify(values) ... })
       setStatus('success')
-    } catch (e) {
+    } catch {
       setStatus('error')
     }
   }, [values])
