@@ -5,12 +5,6 @@ import RotatingText from './RotatingText'
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 py-11 sm:py-14 lg:py-17">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#40ffaa]/10 to-[#4079ff]/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-[#4079ff]/10 to-[#40ffaa]/10 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-8">
           {/* Badge/Tag */}
