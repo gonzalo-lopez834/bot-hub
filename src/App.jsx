@@ -13,13 +13,11 @@ export default function App() {
       <Navbar />
 
       <main id="main" className="flex-1 py-8" tabIndex={-1}>
-        <Container>
-          <Routes>
-            <Route path="/" element={<LandingGrid />} />
-            <Route path="/services/:id" element={<ServiceDetailView />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" element={<Container><LandingGrid /></Container>} />
+          <Route path="/services/:id" element={<Container><ServiceDetailView /></Container>} />
+          <Route path="*" element={<Container><NotFound /></Container>} />
+        </Routes>
       </main>
 
       <footer className="border-t bg-white">

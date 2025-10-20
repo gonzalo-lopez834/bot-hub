@@ -52,5 +52,145 @@
     "iconName": "bank",
     "advantages": ["Normalización de fees", "Alertas de desvío", "Asiento sugerido"],
     "href": "/services/conciliacion-mp"
+  },
+  {
+    "id": "validador-cuit",
+    "slug": "validador-cuit",
+    "title": "Validador de CUIT Masivo",
+    "description": "Validación automática de CUITs en lotes.",
+    "longDescription": "Procesa archivos Excel con miles de CUITs, valida formato y estado en AFIP, genera reportes de errores.",
+    "iconName": "check",
+    "advantages": ["Validación en lotes", "Verificación AFIP", "Reporte de errores"],
+    "href": "/services/validador-cuit"
+  },
+  {
+    "id": "extractor-padron",
+    "slug": "extractor-padron",
+    "title": "Extractor Padrón A5",
+    "description": "Descarga automática del padrón de contribuyentes.",
+    "longDescription": "Bot que descarga y procesa el padrón A5 de AFIP, extrae datos específicos y genera bases actualizadas.",
+    "iconName": "database",
+    "advantages": ["Descarga automática", "Procesamiento inteligente", "Base actualizada"],
+    "href": "/services/extractor-padron"
+  },
+  {
+    "id": "monitor-vencimientos",
+    "slug": "monitor-vencimientos",
+    "title": "Monitor de Vencimientos",
+    "description": "Alertas automáticas de vencimientos fiscales.",
+    "longDescription": "Sistema de notificaciones que monitorea calendarios fiscales y envía alertas personalizadas por cliente.",
+    "iconName": "calendar",
+    "advantages": ["Alertas personalizadas", "Calendario fiscal", "Notificaciones automáticas"],
+    "href": "/services/monitor-vencimientos"
+  },
+  {
+    "id": "generador-ddjj",
+    "slug": "generador-ddjj",
+    "title": "Generador DDJJ IVA",
+    "description": "Automatización de declaraciones juradas de IVA.",
+    "longDescription": "Procesa comprobantes, calcula posición de IVA y genera archivos para presentación en AFIP.",
+    "iconName": "document",
+    "advantages": ["Cálculo automático", "Validaciones AFIP", "Archivo listo"],
+    "href": "/services/generador-ddjj"
+  },
+  {
+    "id": "conciliador-bancario",
+    "slug": "conciliador-bancario",
+    "title": "Conciliador Bancario",
+    "description": "Conciliación automática de extractos bancarios.",
+    "longDescription": "Cruza movimientos bancarios con registros contables, identifica diferencias y sugiere ajustes.",
+    "iconName": "bank",
+    "advantages": ["Cruce automático", "Detección de diferencias", "Ajustes sugeridos"],
+    "href": "/services/conciliador-bancario"
+  },
+  {
+    "id": "analizador-gastos",
+    "slug": "analizador-gastos",
+    "title": "Analizador de Gastos",
+    "description": "Categorización automática de gastos empresariales.",
+    "longDescription": "Clasifica gastos por tipo, centro de costo y deducibilidad fiscal usando IA y reglas personalizables.",
+    "iconName": "chart",
+    "advantages": ["Clasificación IA", "Reglas personalizables", "Análisis fiscal"],
+    "href": "/services/analizador-gastos"
+  },
+  {
+    "id": "digitalizador-facturas",
+    "slug": "digitalizador-facturas",
+    "title": "Digitalizador de Facturas",
+    "description": "OCR avanzado para facturas en papel.",
+    "longDescription": "Convierte facturas físicas en datos estructurados usando OCR e IA para reconocimiento de campos.",
+    "iconName": "scan",
+    "advantages": ["OCR avanzado", "Reconocimiento IA", "Datos estructurados"],
+    "href": "/services/digitalizador-facturas"
+  },
+  {
+    "id": "calculadora-sueldos",
+    "slug": "calculadora-sueldos",
+    "title": "Calculadora de Sueldos",
+    "description": "Cálculo automático de liquidaciones de sueldo.",
+    "longDescription": "Procesa novedades, aplica convenios y escalas, calcula aportes y contribuciones automáticamente.",
+    "iconName": "users",
+    "advantages": ["Convenios actualizados", "Cálculo automático", "Recibos digitales"],
+    "href": "/services/calculadora-sueldos"
+  },
+  {
+    "id": "tracker-retenciones",
+    "slug": "tracker-retenciones",
+    "title": "Tracker de Retenciones",
+    "description": "Seguimiento de retenciones y percepciones.",
+    "longDescription": "Registra y clasifica retenciones sufridas, calcula créditos aplicables y genera reportes de posición.",
+    "iconName": "target",
+    "advantages": ["Registro automático", "Cálculo de créditos", "Reportes fiscales"],
+    "href": "/services/tracker-retenciones"
+  },
+  {
+    "id": "optimizador-stocks",
+    "slug": "optimizador-stocks",
+    "title": "Optimizador de Stocks",
+    "description": "Análisis predictivo de inventarios.",
+    "longDescription": "Analiza patrones de venta, predice demanda y sugiere niveles óptimos de stock por producto.",
+    "iconName": "box",
+    "advantages": ["Análisis predictivo", "Optimización automática", "Alertas de stock"],
+    "href": "/services/optimizador-stocks"
+  },
+  {
+    "id": "generador-reportes",
+    "slug": "generador-reportes",
+    "title": "Generador de Reportes",
+    "description": "Reportes financieros automáticos personalizados.",
+    "longDescription": "Crea dashboards y reportes financieros automáticos con métricas KPI y análisis de tendencias.",
+    "iconName": "presentation",
+    "advantages": ["Dashboards automáticos", "KPIs personalizados", "Análisis de tendencias"],
+    "href": "/services/generador-reportes"
+  },
+  {
+    "id": "validador-cfdi",
+    "slug": "validador-cfdi",
+    "title": "Validador CFDI México",
+    "description": "Validación de comprobantes fiscales mexicanos.",
+    "longDescription": "Valida estructura y autenticidad de CFDIs, verifica timbrado SAT y genera reportes de cumplimiento.",
+    "iconName": "shield",
+    "advantages": ["Validación SAT", "Verificación de timbrado", "Cumplimiento fiscal"],
+    "href": "/services/validador-cfdi"
+  },
+  {
+    "id": "asistente-cobranzas",
+    "slug": "asistente-cobranzas",
+    "title": "Asistente de Cobranzas",
+    "description": "Automatización del proceso de cobranzas.",
+    "longDescription": "Gestiona cuentas por cobrar, envía recordatorios automáticos y genera reportes de morosidad.",
+    "iconName": "dollar",
+    "advantages": ["Recordatorios automáticos", "Gestión de morosidad", "Reportes de cobranza"],
+    "href": "/services/asistente-cobranzas"
+  },
+  {
+    "id": "clasificador-comprobantes",
+    "slug": "clasificador-comprobantes",
+    "title": "Clasificador de Comprobantes",
+    "description": "IA para clasificación automática de documentos.",
+    "longDescription": "Clasifica comprobantes por tipo, proveedor y categoría contable usando inteligencia artificial.",
+    "iconName": "folder",
+    "advantages": ["Clasificación IA", "Aprendizaje automático", "Organización inteligente"],
+    "href": "/services/clasificador-comprobantes"
   }
 ]
