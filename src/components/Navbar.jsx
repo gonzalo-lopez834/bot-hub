@@ -2,10 +2,10 @@ import { NavLink, useLocation } from 'react-router-dom';
 import SearchBox from './SearchBox.jsx';
 import { useScrollDetection } from '../hooks/useScrollDetection.js';
 
-const menuItems = [
+const menuItems = [ 
   { label: 'Inicio', ariaLabel: 'Ir a la página principal', link: '/' },
   { label: 'Categorías', ariaLabel: 'Ver categorías de servicios', link: '/' },
-  { label: 'Contacto', ariaLabel: 'Contactar con nosotros', link: '/' },
+  { label: 'Contacto', ariaLabel: 'Contactar con nosotros', link: '/contact' },
 ];
 
 export default function Navbar() {

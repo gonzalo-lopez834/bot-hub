@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import LandingGrid from './components/LandingGrid.jsx'
 import ServiceDetailView from './components/ServiceDetailView.jsx'
 import NotFound from './components/NotFound.jsx'
+import Contact from './components/Contact.jsx'
 import SkipLink from './components/SkipLink.jsx'
 import Navbar from './components/Navbar.jsx'
 import Container from './components/Container.jsx'
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Container><LandingGrid /></Container>} />
           <Route path="/services/:id" element={<Container><ServiceDetailView /></Container>} />
+          <Route path="/contact" element={<Container><Contact /></Container>} />
           <Route path="*" element={<Container><NotFound /></Container>} />
         </Routes>
       </main>

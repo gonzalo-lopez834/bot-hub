@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import Icon from './Icon.jsx'
 
@@ -13,7 +12,6 @@ export default function SearchResults({
   loading,
   activeIndex = -1
 }) {
-  const navigate = useNavigate()
   const activeElementRef = useRef(null)
 
   // Scroll automático al elemento activo

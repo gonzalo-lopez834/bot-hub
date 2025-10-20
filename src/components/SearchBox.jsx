@@ -17,7 +17,6 @@ export default function SearchBox({
     results, 
     isOpen, 
     loading, 
-    hasResults, 
     activeIndex,
     search, 
     clear, 
@@ -71,13 +70,14 @@ export default function SearchBox({
         navigateResults('up')
         break
       
-      case 'Enter':
+      case 'Enter': {
         e.preventDefault()
         const selectedService = selectActiveResult()
         if (selectedService) {
           navigate(`/services/${selectedService.slug}`)
         }
         break
+      }
       
       default:
         break
