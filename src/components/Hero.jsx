@@ -1,5 +1,4 @@
 import { motion, LayoutGroup } from 'motion/react'
-import GradientText from './GradientText'
 import RotatingText from './RotatingText'
 
 export default function Hero() {

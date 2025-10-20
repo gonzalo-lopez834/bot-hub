@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import LandingGrid from './components/LandingGrid.jsx'
 import ServiceDetailView from './components/ServiceDetailView.jsx'
 import NotFound from './components/NotFound.jsx'
@@ -7,12 +7,15 @@ import Navbar from './components/Navbar.jsx'
 import Container from './components/Container.jsx'
 
 export default function App() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <div className="min-h-dvh flex flex-col bg-slate-50">
       <SkipLink />
       <Navbar />
 
-      <main id="main" className="flex-1 py-8" tabIndex={-1}>
+      <main id="main" className={`flex-1 pb-8 ${isHomePage ? 'pt-32' : 'pt-8'}`} tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Container><LandingGrid /></Container>} />
           <Route path="/services/:id" element={<Container><ServiceDetailView /></Container>} />

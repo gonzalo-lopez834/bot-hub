@@ -30,3 +30,22 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Optimizaciones para glassmorphism y efectos */
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.backdrop-blur-2xl {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+/* Suavizado de animaciones para navbar flotante */
+@supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+  .floating-navbar {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+}
+
