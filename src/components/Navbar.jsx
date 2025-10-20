@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import GradientText from './GradientText.jsx';
+import SearchBox from './SearchBox.jsx';
 
 const menuItems = [
   { label: 'Inicio', ariaLabel: 'Ir a la página principal', link: '/' },
@@ -22,7 +24,12 @@ export default function Navbar() {
           </NavLink>
         </div>
 
-        {/* Botones de navegación alineados a la derecha */}
+        {/* Centro: Buscador */}
+        <div className="w-full max-w-sm mx-4 hidden sm:block">
+          <SearchBox />
+        </div>
+
+        {/* Derecha: Navegación */}
         <nav className="flex items-center gap-3 sm:gap-6 flex-shrink-0">
           {menuItems.map((item) => (
             <NavLink
@@ -36,6 +43,11 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
+
+        {/* Mobile: Buscador debajo en mobile */}
+        <div className="w-full max-w-md sm:hidden">
+          <SearchBox />
+        </div>
       </div>
     </header>
   )

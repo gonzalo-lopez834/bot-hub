@@ -91,6 +91,84 @@ export default function Icon({ name = 'default', className = 'w-6 h-6' }) {
         <polyline points="10,9 9,9 8,9" strokeWidth="1.5" />
       </svg>
     ),
+    search: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <circle cx="11" cy="11" r="8" strokeWidth="1.5" />
+        <path strokeWidth="1.5" d="m21 21-4.35-4.35" />
+      </svg>
+    ),
+    database: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <ellipse cx="12" cy="5" rx="9" ry="3" strokeWidth="1.5" />
+        <path strokeWidth="1.5" d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+        <path strokeWidth="1.5" d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+      </svg>
+    ),
+    calendar: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="1.5" />
+        <line x1="16" y1="2" x2="16" y2="6" strokeWidth="1.5" />
+        <line x1="8" y1="2" x2="8" y2="6" strokeWidth="1.5" />
+        <line x1="3" y1="10" x2="21" y2="10" strokeWidth="1.5" />
+      </svg>
+    ),
+    chart: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <line x1="18" y1="20" x2="18" y2="10" strokeWidth="1.5" />
+        <line x1="12" y1="20" x2="12" y2="4" strokeWidth="1.5" />
+        <line x1="6" y1="20" x2="6" y2="14" strokeWidth="1.5" />
+      </svg>
+    ),
+    scan: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <path strokeWidth="1.5" d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" />
+        <line x1="12" y1="8" x2="12" y2="16" strokeWidth="1.5" />
+      </svg>
+    ),
+    users: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <path strokeWidth="1.5" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" strokeWidth="1.5" />
+        <path strokeWidth="1.5" d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+    target: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <circle cx="12" cy="12" r="10" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="6" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="2" strokeWidth="1.5" />
+      </svg>
+    ),
+    box: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <path strokeWidth="1.5" d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+        <polyline points="3.27,6.96 12,12.01 20.73,6.96" strokeWidth="1.5" />
+        <line x1="12" y1="22.08" x2="12" y2="12" strokeWidth="1.5" />
+      </svg>
+    ),
+    presentation: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" strokeWidth="1.5" />
+        <line x1="8" y1="21" x2="16" y2="21" strokeWidth="1.5" />
+        <line x1="12" y1="17" x2="12" y2="21" strokeWidth="1.5" />
+      </svg>
+    ),
+    shield: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <path strokeWidth="1.5" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+    dollar: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <line x1="12" y1="1" x2="12" y2="23" strokeWidth="1.5" />
+        <path strokeWidth="1.5" d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+    folder: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <path strokeWidth="1.5" d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+      </svg>
+    ),
     default: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
         <circle cx="12" cy="12" r="8" strokeWidth="1.5" />
