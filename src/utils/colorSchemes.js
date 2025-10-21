@@ -15,7 +15,8 @@ const COLOR_SCHEMES = [
     title: 'text-blue-700',
     subtitle: 'text-blue-600',
     badge: 'bg-blue-100 text-blue-600',
-    stepBg: 'bg-blue-100 text-blue-600'
+    stepBg: 'bg-blue-100 text-blue-600',
+    buttonGradient: 'from-blue-600 to-blue-700'
   },
   // Púrpuras
   { 
@@ -27,7 +28,8 @@ const COLOR_SCHEMES = [
     title: 'text-purple-700',
     subtitle: 'text-purple-600',
     badge: 'bg-purple-100 text-purple-600',
-    stepBg: 'bg-purple-100 text-purple-600'
+    stepBg: 'bg-purple-100 text-purple-600',
+    buttonGradient: 'from-purple-600 to-purple-700'
   },
   // Esmeraldas
   { 
@@ -39,7 +41,8 @@ const COLOR_SCHEMES = [
     title: 'text-emerald-700',
     subtitle: 'text-emerald-600',
     badge: 'bg-emerald-100 text-emerald-600',
-    stepBg: 'bg-emerald-100 text-emerald-600'
+    stepBg: 'bg-emerald-100 text-emerald-600',
+    buttonGradient: 'from-emerald-600 to-emerald-700'
   },
   // Naranjas
   { 
@@ -51,7 +54,8 @@ const COLOR_SCHEMES = [
     title: 'text-orange-700',
     subtitle: 'text-orange-600',
     badge: 'bg-orange-100 text-orange-600',
-    stepBg: 'bg-orange-100 text-orange-600'
+    stepBg: 'bg-orange-100 text-orange-600',
+    buttonGradient: 'from-orange-600 to-orange-700'
   },
   // Rosas
   { 
@@ -63,7 +67,8 @@ const COLOR_SCHEMES = [
     title: 'text-rose-700',
     subtitle: 'text-rose-600',
     badge: 'bg-rose-100 text-rose-600',
-    stepBg: 'bg-rose-100 text-rose-600'
+    stepBg: 'bg-rose-100 text-rose-600',
+    buttonGradient: 'from-rose-600 to-rose-700'
   },
   // Índigos
   { 
@@ -75,7 +80,8 @@ const COLOR_SCHEMES = [
     title: 'text-indigo-700',
     subtitle: 'text-indigo-600',
     badge: 'bg-indigo-100 text-indigo-600',
-    stepBg: 'bg-indigo-100 text-indigo-600'
+    stepBg: 'bg-indigo-100 text-indigo-600',
+    buttonGradient: 'from-indigo-600 to-indigo-700'
   },
   // Verdes
   { 
@@ -87,7 +93,8 @@ const COLOR_SCHEMES = [
     title: 'text-green-700',
     subtitle: 'text-green-600',
     badge: 'bg-green-100 text-green-600',
-    stepBg: 'bg-green-100 text-green-600'
+    stepBg: 'bg-green-100 text-green-600',
+    buttonGradient: 'from-green-600 to-green-700'
   },
   // Amarillos
   { 
@@ -99,7 +106,8 @@ const COLOR_SCHEMES = [
     title: 'text-yellow-700',
     subtitle: 'text-yellow-600',
     badge: 'bg-yellow-100 text-yellow-600',
-    stepBg: 'bg-yellow-100 text-yellow-600'
+    stepBg: 'bg-yellow-100 text-yellow-600',
+    buttonGradient: 'from-yellow-600 to-yellow-700'
   },
   // Cianes
   { 
@@ -111,7 +119,8 @@ const COLOR_SCHEMES = [
     title: 'text-cyan-700',
     subtitle: 'text-cyan-600',
     badge: 'bg-cyan-100 text-cyan-600',
-    stepBg: 'bg-cyan-100 text-cyan-600'
+    stepBg: 'bg-cyan-100 text-cyan-600',
+    buttonGradient: 'from-cyan-600 to-cyan-700'
   },
   // Violetas
   { 
@@ -123,7 +132,8 @@ const COLOR_SCHEMES = [
     title: 'text-violet-700',
     subtitle: 'text-violet-600',
     badge: 'bg-violet-100 text-violet-600',
-    stepBg: 'bg-violet-100 text-violet-600'
+    stepBg: 'bg-violet-100 text-violet-600',
+    buttonGradient: 'from-violet-600 to-violet-700'
   },
   // Fucsias
   { 
@@ -135,7 +145,8 @@ const COLOR_SCHEMES = [
     title: 'text-fuchsia-700',
     subtitle: 'text-fuchsia-600',
     badge: 'bg-fuchsia-100 text-fuchsia-600',
-    stepBg: 'bg-fuchsia-100 text-fuchsia-600'
+    stepBg: 'bg-fuchsia-100 text-fuchsia-600',
+    buttonGradient: 'from-fuchsia-600 to-fuchsia-700'
   },
   // Limas
   { 
@@ -147,7 +158,8 @@ const COLOR_SCHEMES = [
     title: 'text-lime-700',
     subtitle: 'text-lime-600',
     badge: 'bg-lime-100 text-lime-600',
-    stepBg: 'bg-lime-100 text-lime-600'
+    stepBg: 'bg-lime-100 text-lime-600',
+    buttonGradient: 'from-lime-600 to-lime-700'
   },
   // Teales
   { 
@@ -159,7 +171,8 @@ const COLOR_SCHEMES = [
     title: 'text-teal-700',
     subtitle: 'text-teal-600',
     badge: 'bg-teal-100 text-teal-600',
-    stepBg: 'bg-teal-100 text-teal-600'
+    stepBg: 'bg-teal-100 text-teal-600',
+    buttonGradient: 'from-teal-600 to-teal-700'
   },
   // Cielos
   { 
@@ -171,7 +184,8 @@ const COLOR_SCHEMES = [
     title: 'text-sky-700',
     subtitle: 'text-sky-600',
     badge: 'bg-sky-100 text-sky-600',
-    stepBg: 'bg-sky-100 text-sky-600'
+    stepBg: 'bg-sky-100 text-sky-600',
+    buttonGradient: 'from-sky-600 to-sky-700'
   }
 ]
 

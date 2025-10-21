@@ -1,8 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { useContactForm } from '../hooks/useContactForm'
+import { getColorSchemeForService } from '../utils/colorSchemes'
 
-export default function FormsDetail({ service, className = 'mt-8' }) {
+export default function FormsDetail({ service, colorScheme = null, className = 'mt-8' }) {
   const alertRef = useRef(null)
+
+  // Usar el colorScheme proporcionado o generar uno basado en el service ID
+  const activeColorScheme = colorScheme || getColorSchemeForService(service?.id || '')
 
   const {
     values,
@@ -37,31 +41,39 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
 
   const rootClass = `bg-white/80 backdrop-blur-sm rounded-2xl border border-white/60 shadow-lg p-8 ${className}`.trim()
 
+  // Mapear colores del esquema a estilos CSS para inputs
+  const getInputFocusColor = () => {
+    const colorMap = {
+      'text-blue-600': 'focus:ring-blue-500',
+      'text-purple-600': 'focus:ring-purple-500',
+      'text-emerald-600': 'focus:ring-emerald-500',
+      'text-orange-600': 'focus:ring-orange-500',
+      'text-rose-600': 'focus:ring-rose-500',
+      'text-indigo-600': 'focus:ring-indigo-500',
+      'text-green-600': 'focus:ring-green-500',
+      'text-yellow-600': 'focus:ring-yellow-500',
+      'text-cyan-600': 'focus:ring-cyan-500',
+      'text-violet-600': 'focus:ring-violet-500',
+      'text-fuchsia-600': 'focus:ring-fuchsia-500',
+      'text-lime-600': 'focus:ring-lime-500',
+      'text-teal-600': 'focus:ring-teal-500',
+      'text-sky-600': 'focus:ring-sky-500'
+    }
+    return colorMap[activeColorScheme.badge] || 'focus:ring-blue-500'
+  }
+
+  const inputFocusClass = getInputFocusColor()
+
   return (
     <section className={rootClass} aria-labelledby="contact-title">
       <div className="text-center mb-8">
-        <h2 id="contact-title" className="text-2xl font-bold text-gray-900 mb-3">
-          Solicitar información
+        <h2 id="contact-title" className={`text-2xl font-bold ${activeColorScheme.title} mb-3`}>
+          Realiza una consulta sobre nuestro Agente
         </h2>
         <p className="text-gray-600 mb-6">
           Completa el formulario para recibir más detalles sobre{' '}
           <span className="font-semibold text-gray-800">{service?.title}</span>
         </p>
-        
-        <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <span className="text-green-500">✓</span>
-            <span>Respuesta en 24hs</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-blue-500">✓</span>
-            <span>Demo gratuita</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-purple-500">✓</span>
-            <span>Sin compromiso</span>
-          </div>
-        </div>
       </div>
 
       {(status === 'success' || status === 'error') && (
@@ -83,7 +95,7 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
               {status === 'success' && (
                 <div>
                   <div className="font-semibold">¡Mensaje enviado correctamente!</div>
-                  <div className="text-sm">Te contactaremos pronto para coordinar una demostración.</div>
+                  <div className="text-sm">Te enviaremos la información solicitada.</div>
                 </div>
               )}
               {status === 'error' && (
@@ -109,7 +121,7 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
             type="text"
             autoComplete="name"
             placeholder="Ingresa tu nombre"
-            className="w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 focus:bg-white/90 transition-all duration-200"
+            className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200`}
             value={values.name}
             onChange={onChange}
             onBlur={onBlur}
@@ -126,15 +138,15 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
 
         <div>
           <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-2">
-            Email corporativo
+            Email
           </label>
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="empresa@ejemplo.com"
-            className="w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 focus:bg-white/90 transition-all duration-200"
+            placeholder="email@ejemplo.com"
+            className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200`}
             value={values.email}
             onChange={onChange}
             onBlur={onBlur}
@@ -157,8 +169,8 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
             id="message"
             name="message"
             rows={4}
-            placeholder="Describe tu consulta sobre automatización contable..."
-            className="w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 focus:bg-white/90 transition-all duration-200 resize-none"
+            placeholder="Describe tu consulta sobre nuestro Agente..."
+            className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200 resize-none`}
             value={values.message}
             onChange={onChange}
             onBlur={onBlur}
@@ -177,7 +189,7 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
           <button
             type="submit"
             disabled={isSubmitting || !canSubmit}
-            className="flex-1 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className={`flex-1 rounded-xl bg-gradient-to-r ${activeColorScheme.buttonGradient} px-6 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
@@ -188,7 +200,7 @@ export default function FormsDetail({ service, className = 'mt-8' }) {
                 Enviando...
               </span>
             ) : (
-              'Solicitar demostración gratuita'
+              'Solicitar informacion'
             )}
           </button>
 

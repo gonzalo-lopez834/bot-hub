@@ -48,7 +48,7 @@ export default function Hero() {
             </LayoutGroup>
             
             <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 leading-relaxed">
-              Soluciones automatizadas creadas por <span className="font-semibold text-gray-900">SmartIA</span> para 
+              Soluciones automatizadas creadas por <span className="font-semibold text-gray-900">AgentIA</span> para 
               descargas y procesamiento de <span className="font-semibold text-gray-900">ARCA</span> y{' '}
               <span className="font-semibold text-gray-900">ONVIO</span>. Ahorrá tiempo, eliminá errores 
               y enfocate en lo que realmente importa.

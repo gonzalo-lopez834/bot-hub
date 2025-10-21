@@ -66,8 +66,7 @@ export default function ServiceDetailView() {
   return (
     <div className="min-h-screen p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${colorScheme.gradient} backdrop-blur-sm p-8 shadow-xl mb-8`}>
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
+      <div className={`relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-md border border-white/20 p-8 shadow-xl ${colorScheme.shadow} mb-8 transition-all duration-300`}>
         <div className="relative flex items-center gap-6">
           <div className={`rounded-2xl ${colorScheme.iconBg} p-4 ${colorScheme.iconText}`}>
             <Icon name={service.iconName} className="h-12 w-12" />
@@ -81,7 +80,7 @@ export default function ServiceDetailView() {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/60 shadow-lg overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl shadow-black/5 overflow-hidden transition-all duration-300">
         <div className="flex border-b border-gray-200">
           <button 
             onClick={() => setActiveTab('description')}
@@ -135,21 +134,6 @@ export default function ServiceDetailView() {
                   {service.longDescription ?? service.description}
                 </p>
               </div>
-              
-              <div className="grid md:grid-cols-3 gap-6 mt-8">
-                <div className="text-center p-6 bg-white/50 rounded-2xl border border-white/60">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">99.9%</div>
-                  <div className="text-gray-600 font-medium">Precisión</div>
-                </div>
-                <div className="text-center p-6 bg-white/50 rounded-2xl border border-white/60">
-                  <div className="text-3xl font-bold text-green-600 mb-2">&lt; 5min</div>
-                  <div className="text-gray-600 font-medium">Configuración</div>
-                </div>
-                <div className="text-center p-6 bg-white/50 rounded-2xl border border-white/60">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
-                  <div className="text-gray-600 font-medium">Disponibilidad</div>
-                </div>
-              </div>
             </div>
           )}
 
@@ -159,7 +143,7 @@ export default function ServiceDetailView() {
                 <h3 className={`font-semibold text-xl ${colorScheme.subtitle} mb-6`}>Ventajas clave de {service.title}</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   {advantages.map((adv, index) => (
-                    <div key={index} className="bg-white/50 rounded-2xl p-6 border border-white/60">
+                    <div key={index} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg">
                       <div className="flex items-start gap-4">
                         <div className={`rounded-full ${colorScheme.badge} p-3 flex-shrink-0`}>
                           <Icon name="check" className="h-5 w-5" />
@@ -207,7 +191,7 @@ export default function ServiceDetailView() {
                       icon: "document"
                     }
                   ].map((step, index) => (
-                    <div key={index} className="bg-white/50 rounded-2xl p-6 border border-white/60">
+                    <div key={index} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg">
                       <div className="flex items-start gap-6">
                         <div className={`rounded-full ${colorScheme.stepBg} w-12 h-12 flex items-center justify-center flex-shrink-0`}>
                           <Icon name={step.icon} className="h-6 w-6" />
@@ -232,13 +216,13 @@ export default function ServiceDetailView() {
           {activeTab === 'contact' && (
             <div className="max-w-2xl mx-auto">
               <div className="text-center mb-8">
-                <h3 className={`font-semibold text-2xl ${colorScheme.subtitle} mb-4`}>¿Listo para automatizar tu contabilidad?</h3>
+                <h3 className={`font-semibold text-2xl ${colorScheme.subtitle} mb-4`}>¿Te gustaria recibir informacion sobre {service.title}?</h3>
                 <p className="text-gray-600 text-lg">
-                  Completa el formulario y te contactaremos para coordinar una demostración personalizada de {service.title}
+                  Completa el formulario y te contactaremos para enviarte más detalles.
                 </p>
               </div>
-              <div className="bg-white/50 rounded-2xl p-8 border border-white/60">
-                <FormsDetail service={service} className="mt-0" />
+              <div className="bg-white/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-lg transition-all duration-300">
+                <FormsDetail service={service} colorScheme={colorScheme} className="mt-0" />
               </div>
             </div>
           )}
