@@ -109,7 +109,7 @@ export default function SearchBox({
 
   return (
     <div className="relative">
-      <div className="relative">
+      <div className="relative transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-0.5">
         <input
           type="text"
           value={query}
@@ -118,13 +118,13 @@ export default function SearchBox({
           onBlur={handleInputBlur}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="w-full pl-10 pr-10 py-3 text-sm border border-gray-300 rounded-lg bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm hover:border-gray-400 transition-all"
+          className="w-full pl-10 pr-10 py-3 text-sm border border-white/20 rounded-2xl bg-white/40 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4079ff]/50 focus:border-[#4079ff]/30 focus:bg-white/60 hover:bg-white/50 hover:border-white/30 hover:shadow-lg hover:shadow-[#4079ff]/10 transition-all duration-300 ease-out"
           autoComplete="off"
         />
         
         <Icon 
           name="search" 
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" 
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" 
         />
         
         {/* Botón de limpiar */}

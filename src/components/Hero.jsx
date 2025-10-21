@@ -3,11 +3,11 @@ import RotatingText from './RotatingText'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 py-11 sm:py-14 lg:py-17">
+    <section className="relative overflow-hidden py-11 sm:py-14 lg:py-17">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-8">
-          {/* Badge/Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#40ffaa]/10 to-[#4079ff]/10 border border-[#4079ff]/20">
+          {/* Badge/Tag con glassmorphism */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-white/20 hover:bg-white/90 hover:border-[#4079ff]/30 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#40ffaa] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4079ff]"></span>
@@ -18,7 +18,7 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <div className="space-y-4">
+          <div className="space-y-4 bg-white/80 backdrop-blur-md border border-white/20 rounded-3xl px-6 sm:px-8 lg:px-12 py-8 sm:py-10 lg:py-12 shadow-xl shadow-black/5 hover:border-white/30 transition-all duration-300 max-w-5xl mx-auto">
             <LayoutGroup>
               <motion.h1 
                 layout

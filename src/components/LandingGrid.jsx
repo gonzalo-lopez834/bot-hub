@@ -21,22 +21,21 @@ export default function LandingGrid() {
             const colorScheme = getColorSchemeForService(s.id)
             
             return (
-              <li key={s.id} className="group">
+              <li key={s.id} className="group h-full">
                 <Link
                   to={to}
-                  className={`block relative overflow-hidden rounded-2xl bg-gradient-to-br ${colorScheme.gradient} backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${colorScheme.shadow} focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2`}
+                  className={`flex flex-col h-full relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 hover:border-white/30 p-6 transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 shadow-lg ${colorScheme.shadow} focus:outline-none focus:ring-2 focus:ring-[#4079ff]/50 focus:ring-offset-2`}
                 >
-                  <div className="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
-                  <div className="relative">
-                    {/* Header con efecto vidrio tintado */}
-                    <div className="flex items-center gap-4 p-4 mb-4 rounded-xl backdrop-blur-lg shadow-lg transition-all duration-500 relative overflow-hidden" 
+                  <div className="relative flex-1 flex flex-col">
+                    {/* Header con efecto glassmorphism tintado */}
+                    <div className="flex items-center gap-4 p-4 mb-4 rounded-xl backdrop-blur-lg shadow-sm transition-all duration-300 ease-out relative overflow-hidden" 
                          style={{
                            backgroundColor: colorScheme.bg,
                            backdropFilter: 'blur(16px)'
                          }}>
                       <div className="relative flex items-center gap-4 w-full">
                         <div className="flex-shrink-0">
-                          <Icon name={s.iconName} className={`w-7 h-7 ${colorScheme.iconText} transition-all duration-500`} />
+                          <Icon name={s.iconName} className={`w-7 h-7 ${colorScheme.iconText} transition-all duration-300`} />
                         </div>
                         
                         <div className="flex-1 min-w-0">
@@ -47,11 +46,11 @@ export default function LandingGrid() {
                       </div>
                     </div>
                     
-                    <p className="text-sm text-gray-700 leading-relaxed mb-4 font-medium">
+                    <p className="text-sm text-gray-700 leading-relaxed mb-4 font-medium flex-1">
                       {s.description}
                     </p>
                     
-                    <div className="flex items-center text-sm font-semibold text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    <div className="flex items-center text-sm font-semibold text-[#4079ff] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                       Más detalles
                       <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
