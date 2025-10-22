@@ -55,11 +55,6 @@ export default function ServiceDetailView() {
     )
   }
 
-  const advantages =
-    Array.isArray(service.advantages) && service.advantages.length > 0
-      ? service.advantages
-      : null
-
   // Obtener el esquema de colores usando el nuevo sistema centralizado
   const colorScheme = getColorSchemeForService(service.id)
 
@@ -93,24 +88,14 @@ export default function ServiceDetailView() {
             Descripción
           </button>
           <button 
-            onClick={() => setActiveTab('advantages')}
+            onClick={() => setActiveTab('result')}
             className={`px-6 py-4 font-medium transition-colors ${
-              activeTab === 'advantages' 
+              activeTab === 'result' 
                 ? `${colorScheme.title} border-b-2 border-current bg-white/50` 
                 : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            Ventajas
-          </button>
-          <button 
-            onClick={() => setActiveTab('process')}
-            className={`px-6 py-4 font-medium transition-colors ${
-              activeTab === 'process' 
-                ? `${colorScheme.title} border-b-2 border-current bg-white/50` 
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            Proceso
+            Resultado
           </button>
           <button 
             onClick={() => setActiveTab('contact')}
@@ -130,85 +115,38 @@ export default function ServiceDetailView() {
             <div className="space-y-6">
               <div>
                 <h3 className={`font-semibold text-xl ${colorScheme.subtitle} mb-4`}>¿Qué hace este servicio?</h3>
-                <p className="text-gray-700 leading-relaxed text-lg">
+                <div className="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
                   {service.longDescription ?? service.description}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'advantages' && advantages && (
-            <div className="space-y-6">
-              <div>
-                <h3 className={`font-semibold text-xl ${colorScheme.subtitle} mb-6`}>Ventajas clave de {service.title}</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {advantages.map((adv, index) => (
-                    <div key={index} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                      <div className="flex items-start gap-4">
-                        <div className={`rounded-full ${colorScheme.badge} p-3 flex-shrink-0`}>
-                          <Icon name="check" className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-900 mb-2">Ventaja {index + 1}</h4>
-                          <p className="text-gray-700 leading-relaxed">{adv}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
           )}
 
-          {activeTab === 'process' && (
+          {activeTab === 'result' && (
             <div className="space-y-6">
               <div>
-                <h3 className={`font-semibold text-xl ${colorScheme.subtitle} mb-6`}>¿Cómo funciona el proceso?</h3>
-                <div className="space-y-6">
-                  {[
-                    {
-                      step: 1,
-                      title: "Configuración inicial",
-                      description: "Configuramos los parámetros específicos de tu empresa y validamos los datos de entrada necesarios para el proceso.",
-                      icon: "settings"
-                    },
-                    {
-                      step: 2,
-                      title: "Extracción automática",
-                      description: "Nuestro sistema se conecta automáticamente con AFIP y otras fuentes externas para obtener la información requerida.",
-                      icon: "download"
-                    },
-                    {
-                      step: 3,
-                      title: "Procesamiento inteligente",
-                      description: "Aplicamos reglas de negocio personalizadas y procesamos los datos con algoritmos de validación avanzados.",
-                      icon: "cpu"
-                    },
-                    {
-                      step: 4,
-                      title: "Entrega de resultados",
-                      description: "Generamos reportes detallados con evidencias completas y los entregamos en el formato que necesites.",
-                      icon: "document"
-                    }
-                  ].map((step, index) => (
-                    <div key={index} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                      <div className="flex items-start gap-6">
-                        <div className={`rounded-full ${colorScheme.stepBg} w-12 h-12 flex items-center justify-center flex-shrink-0`}>
-                          <Icon name={step.icon} className="h-6 w-6" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-3">
-                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${colorScheme.badge} text-sm font-bold`}>
-                              {step.step}
-                            </span>
-                            <h4 className="font-semibold text-lg text-gray-900">{step.title}</h4>
+                <h3 className={`font-semibold text-xl ${colorScheme.subtitle} mb-6`}>Archivos generados</h3>
+                {service.output && service.output.length > 0 ? (
+                  <div className="space-y-4">
+                    {service.output.map((item, index) => (
+                      <div key={index} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div className="flex items-center gap-4">
+                          <div className={`rounded-full ${colorScheme.badge} p-3 flex-shrink-0`}>
+                            <Icon name="document" className="h-6 w-6" />
                           </div>
-                          <p className="text-gray-700 leading-relaxed">{step.description}</p>
+                          <div className="flex-1">
+                            <p className="text-gray-900 leading-relaxed font-medium">{item}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="bg-white/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
+                    <Icon name="document" className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+                    <p className="text-gray-600">El bot genera archivos según los parámetros configurados.</p>
+                  </div>
+                )}
               </div>
             </div>
           )}

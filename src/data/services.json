@@ -1,196 +1,454 @@
 [
   {
-    "id": "comparacion-afip",
-    "slug": "comparacion-afip",
-    "title": "Comparación Comprobantes AFIP",
-    "description": "Cruce AFIP vs Onvio para detectar faltantes y diferencias.",
-    "longDescription": "Pipeline que descarga, limpia y compara comprobantes emitidos/recibidos, con reportes y evidencias.",
-    "iconName": "scale",
-    "advantages": [
-      "Detección automática de faltantes",
-      "Normalización de columnas",
-      "Reporte listo para auditoría"
+    "id": "anticipo-bienes-personales",
+    "slug": "anticipo-bienes-personales",
+    "title": "Anticipo Bienes Personales",
+    "description": "Descarga de anticipos del Impuesto 180 desde el Sistema de Cuentas Tributarias.",
+    "longDescription": "Automatiza la obtención de reportes detallados de anticipos del Impuesto 180 – Bienes Personales desde el Sistema de Cuentas Tributarias del portal AFIP.\n\nEl bot ingresa al aplicativo 'Sistema de Cuentas Tributarias', filtra específicamente por el impuesto 180 (Bienes Personales), consulta los movimientos del período solicitado y navega hasta la sección de 'Anticipos a computar'. Una vez allí, descarga dos tablas Excel con información detallada:\n\n1. TOTAL ANTICIPOS A COMPUTAR: Consolidado de todos los anticipos disponibles para computar\n2. ANTICIPOS CANCELADOS POR CÓMPUTO IMP. S/CRÉD. DB: Detalle de anticipos ya aplicados\n\nEl bot incluye validaciones inteligentes: detecta si no hay datos disponibles para el período consultado y genera capturas de pantalla como evidencia en caso de errores.",
+    "output": [
+      "Archivos Excel (.xlsx) con las dos tablas de anticipos mencionadas"
     ],
-    "href": "/services/comparacion-afip"
+    "iconName": "download",
+    "category": "",
+    "href": "/services/anticipo-bienes-personales"
   },
   {
-    "id": "asiento-costos",
-    "slug": "asiento-costos",
-    "title": "Asiento de Costos",
-    "description": "Generación de asientos contables desde plantillas.",
-    "longDescription": "Construye asientos mensuales a partir de planillas y reglas de negocio por cliente.",
+    "id": "anticipo-ganancias-personas-fisicas",
+    "slug": "anticipo-ganancias-personas-fisicas",
+    "title": "Anticipo Ganancias Personas Físicas",
+    "description": "Descarga de anticipos del Impuesto 11 desde el Sistema de Cuentas Tributarias.",
+    "longDescription": "Automatiza la obtención de reportes detallados de anticipos del Impuesto 11 – Ganancias Personas Físicas desde el Sistema de Cuentas Tributarias del portal AFIP.\n\nEl bot ingresa al aplicativo 'Sistema de Cuentas Tributarias', filtra específicamente por el impuesto 11 (Ganancias Personas Físicas), consulta los movimientos del período solicitado y navega hasta la sección de 'Anticipos a computar'. Una vez allí, descarga dos tablas Excel con información detallada:\n\n1. TOTAL ANTICIPOS A COMPUTAR: Consolidado de todos los anticipos disponibles para computar\n2. ANTICIPOS CANCELADOS POR CÓMPUTO IMP. S/CRÉD. DB: Detalle de anticipos ya aplicados\n\nEl bot incluye validaciones inteligentes: detecta si no hay datos disponibles para el período consultado y genera capturas de pantalla como evidencia en caso de errores.",
+    "output": [
+      "Archivos Excel (.xlsx) con las dos tablas de anticipos mencionadas"
+    ],
+    "iconName": "download",
+    "category": "",
+    "href": "/services/anticipo-ganancias-personas-fisicas"
+  },
+  {
+    "id": "aportes-en-linea",
+    "slug": "aportes-en-linea",
+    "title": "Aportes en Línea",
+    "description": "Descarga del archivo histórico de aportes y contribuciones desde AFIP.",
+    "longDescription": "Automatiza la descarga del Archivo Histórico de Aportes y Contribuciones disponible en el aplicativo 'Aportes en línea' del portal AFIP.\n\nEl bot ingresa al servicio 'Aportes en línea', verifica que el CUIT representado coincida con el contribuyente solicitado y hace clic en el botón 'Archivo Histórico' para generar la descarga. El archivo histórico contiene el detalle completo de todos los aportes y contribuciones patronales y personales registrados en el sistema de AFIP.\n\nEl archivo se descarga en formato Excel (.xls) y contiene información histórica consolidada de períodos anteriores.",
+    "output": [
+      "Archivo Excel (.xls) con el detalle histórico completo de aportes y contribuciones"
+    ],
+    "iconName": "users",
+    "category": "",
+    "href": "/services/aportes-en-linea"
+  },
+  {
+    "id": "ccma",
+    "slug": "ccma",
+    "title": "CCMA - Cuenta Corriente Monotributistas",
+    "description": "Descarga de movimientos de la Cuenta Corriente Monotributistas y Autónomos.",
+    "longDescription": "Automatiza la descarga de información desde el aplicativo 'CCMA – Cuenta Corriente de Contribuyentes Monotributistas y Autónomos' del portal AFIP.\n\nEl bot ingresa al sistema CCMA, selecciona la empresa representada y consulta los períodos definidos (fecha desde/hasta). Una vez cargada la información, realiza scraping inteligente de la tabla HTML de movimientos: detecta si hay botón 'Ver más' para cargar filas adicionales y consolida todos los registros en un único dataset.\n\nEl resultado se procesa y genera un archivo Excel con el detalle completo de movimientos de la cuenta corriente (débitos, créditos, saldos, vencimientos, etc.). El bot elimina automáticamente las dos primeras columnas auxiliares de la tabla HTML antes de exportar.",
+    "output": [
+      "Archivo Excel (.xlsx) con el detalle completo de movimientos de la cuenta corriente CCMA"
+    ],
+    "iconName": "table",
+    "category": "",
+    "href": "/services/ccma"
+  },
+  {
+    "id": "chatbot-iva",
+    "slug": "chatbot-iva",
+    "title": "ChatBot IVA - Generador VEP",
+    "description": "Generación automática de VEP (Volante Electrónico de Pago) de IVA desde AFIP.",
+    "longDescription": "Automatiza la generación de VEP (Volante Electrónico de Pago) de IVA a través del aplicativo 'Presentación de DDJJ y Pagos' del portal AFIP.\n\nEl bot ingresa al sistema de Presentación de DDJJ y Pagos, accede a la sección de consulta de VEPs y localiza automáticamente el VEP de IVA correspondiente al período solicitado. Una vez identificado, extrae información clave como el medio de pago (RED LINK, INTERBANKING, etc.) y genera un nuevo VEP listo para su impresión o pago electrónico.\n\nEl proceso incluye validaciones de período, verificación de CUIT y manejo inteligente de múltiples VEPs cuando existen pagos anteriores.",
+    "output": [
+      "VEP generado (Volante Electrónico de Pago de IVA)",
+      "Información del medio de pago extraída automáticamente"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/chatbot-iva"
+  },
+  {
+    "id": "checklist",
+    "slug": "checklist",
+    "title": "CheckList de Ganancias",
+    "description": "Verificación y control de cumplimiento de obligaciones fiscales mediante procesamiento local.",
+    "longDescription": "Bot de verificación y control de cumplimiento de obligaciones fiscales que procesa archivos Excel locales de declaraciones de Ganancias.\n\nA diferencia de otros bots, este NO descarga información de AFIP sino que procesa archivos ya descargados previamente (declaraciones F.711). El bot lee archivos Excel de Ganancias Personas Físicas, extrae valores clave como 'Patrimonio neto al cierre' y 'Total Impuesto Determinado' desde hojas específicas, y genera un reporte consolidado tipo checklist.\n\nEl proceso incluye limpieza y transformación automática de los datos: normaliza nombres de contribuyentes, elimina caracteres especiales en razones sociales, valida formatos de CUIT y consolida información de múltiples períodos facilitando la revisión rápida del cumplimiento de obligaciones.",
+    "output": [
+      "Archivo Excel consolidado (check_list.xlsx) con resumen de obligaciones y valores clave extraídos",
+      "Log de procesamiento con detalles de cada contribuyente procesado"
+    ],
+    "iconName": "check",
+    "category": "",
+    "href": "/services/checklist"
+  },
+  {
+    "id": "comprobantes-afectados",
+    "slug": "comprobantes-afectados",
+    "title": "Comprobantes Afectados",
+    "description": "Consulta y descarga de comprobantes afectados a declaraciones juradas desde AFIP.",
+    "longDescription": "Automatiza la consulta y descarga de comprobantes afectados a declaraciones juradas desde el portal AFIP.\n\nEl bot accede al aplicativo correspondiente, filtra por período y obligación fiscal, y descarga el detalle de todos los comprobantes que fueron aplicados (afectados) a cada declaración jurada presentada. Esta información es fundamental para verificar qué facturas de compra o créditos fiscales se utilizaron en cada liquidación de impuestos.",
+    "output": [
+      "Archivos Excel (.xlsx) con detalle de comprobantes afectados por declaración jurada"
+    ],
+    "iconName": "folder",
+    "category": "",
+    "href": "/services/comprobantes-afectados"
+  },
+  {
+    "id": "comprobantes-en-linea",
+    "slug": "comprobantes-en-linea",
+    "title": "Facturador Comprobantes en Línea",
+    "description": "Emisión masiva de comprobantes fiscales electrónicos (Facturas, Notas de Crédito/Débito).",
+    "longDescription": "Automatiza la emisión masiva de comprobantes fiscales electrónicos (Facturas A, B, C, Notas de Crédito/Débito, etc.) a través del aplicativo 'Comprobantes en Línea' del portal AFIP.\n\nEl bot lee un archivo Excel auxiliar con el detalle de las facturas a emitir y procesa cada comprobante automáticamente: selecciona punto de venta, tipo de comprobante, completa datos del receptor (CUIT, razón social), carga productos/servicios con importes y alícuotas de IVA, configura condiciones de venta y confirma la emisión.\n\nPor cada comprobante emitido exitosamente, descarga el PDF oficial con el CAE (Código de Autorización Electrónica) y el archivo XML en formato AFIP. Genera además un Excel consolidado con el resumen de todas las emisiones (número asignado, estado, observaciones).",
+    "output": [
+      "Archivos PDF de cada comprobante emitido con CAE",
+      "Archivos XML en formato oficial AFIP",
+      "Archivo Excel consolidado con detalle de resultados de emisión"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/comprobantes-en-linea"
+  },
+  {
+    "id": "constancia-inscripcion",
+    "slug": "constancia-inscripcion",
+    "title": "Constancia de Inscripción",
+    "description": "Descarga de Constancia de Inscripción desde el Sistema Registral de AFIP.",
+    "longDescription": "Automatiza la descarga de la Constancia de Inscripción (certificado registral) desde el aplicativo 'Sistema Registral' del portal AFIP.\n\nEl bot ingresa al sistema, selecciona el CUIT representado y genera la constancia de inscripción actualizada en formato PDF. Este documento oficial contiene los datos de inscripción del contribuyente: actividades económicas declaradas, impuestos inscriptos, domicilio fiscal, etc.",
+    "output": [
+      "Archivo PDF con la Constancia de Inscripción oficial de AFIP"
+    ],
+    "iconName": "shield",
+    "category": "",
+    "href": "/services/constancia-inscripcion"
+  },
+  {
+    "id": "ddjj-vep-iva",
+    "slug": "ddjj-vep-iva",
+    "title": "Declaración Jurada VEP IVA",
+    "description": "Presentación de declaraciones juradas de IVA con generación automática de VEP.",
+    "longDescription": "Automatiza el proceso de presentación de declaraciones juradas de IVA con generación de VEP (Volante Electrónico de Pago) desde el portal AFIP.\n\nEl bot ingresa al aplicativo de IVA, completa los datos de la declaración jurada según los parámetros proporcionados (importes, débitos, créditos fiscales) y presenta electrónicamente la DDJJ. Una vez presentada, genera automáticamente el VEP correspondiente para su posterior pago.",
+    "output": [
+      "Archivo PDF del VEP generado",
+      "Comprobante de presentación de la DDJJ"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/ddjj-vep-iva"
+  },
+  {
+    "id": "ganancias-personas-fisicas",
+    "slug": "ganancias-personas-fisicas",
+    "title": "Ganancias Personas Físicas F.711",
+    "description": "Descarga de Declaraciones Juradas F.711 del aplicativo Ganancias Personas Humanas.",
+    "longDescription": "Automatiza la descarga de Declaraciones Juradas F.711 del aplicativo 'Ganancias Personas Humanas – Portal Integrado' del portal AFIP.\n\nEl bot accede al sistema de Ganancias, navega al módulo de consulta de declaraciones presentadas, filtra por el año solicitado y genera los archivos PDF oficiales de las Declaraciones Juradas F.711. Durante el proceso, utiliza funciones nativas del navegador para imprimir los documentos garantizando la fidelidad del formato oficial AFIP.\n\nEl sistema recorta automáticamente los PDF que tengan formato extendido, conservando únicamente la página principal de la declaración jurada. Genera también un archivo Excel consolidado con el detalle de todas las liquidaciones procesadas por período.",
+    "output": [
+      "Archivos PDF oficiales de las Declaraciones Juradas F.711 por contribuyente",
+      "Archivo Excel consolidado con detalle de liquidaciones procesadas"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/ganancias-personas-fisicas"
+  },
+  {
+    "id": "deuda-consolidada",
+    "slug": "deuda-consolidada",
+    "title": "Deuda Consolidada",
+    "description": "Procesamiento y consolidación de archivos de deuda combinando múltiples fuentes AFIP.",
+    "longDescription": "Bot de procesamiento y consolidación de archivos de deuda que combina información de múltiples fuentes AFIP.\n\nA diferencia de otros bots, este NO descarga directamente de AFIP sino que procesa archivos ya descargados por otros bots (DeudaSCT y PagosSCT). Toma los archivos Excel de deuda del Sistema de Cuentas Tributarias y los archivos de pagos realizados, cruza la información y genera un reporte consolidado que muestra el estado real de deuda neta de cada contribuyente.\n\nEl proceso incluye limpieza y transformación automática de los datos: normaliza formatos de importes, valida consistencia entre archivos fuente, detecta pagos aplicados y calcula saldos actualizados. Elimina duplicados y estandariza nombres de contribuyentes.",
+    "output": [
+      "Archivo Excel consolidado con deuda neta por contribuyente (deuda total menos pagos)",
+      "Log de procesamiento con detalle del cruce de información"
+    ],
+    "iconName": "table",
+    "category": "",
+    "href": "/services/deuda-consolidada"
+  },
+  {
+    "id": "deuda-sct",
+    "slug": "deuda-sct",
+    "title": "Deuda Sistema Cuentas Tributarias",
+    "description": "Descarga de deuda total desde el Sistema de Cuentas Tributarias de AFIP.",
+    "longDescription": "Automatiza la descarga de información de deuda total desde el Sistema de Cuentas Tributarias del portal AFIP.\n\nEl bot ingresa al aplicativo, selecciona el CUIT representado, filtra por período y descarga el detalle completo de deuda tributaria: obligaciones vencidas, intimaciones, planes de pago, intereses, etc. El archivo generado contiene el estado de cuenta corriente fiscal del contribuyente.",
+    "output": [
+      "Archivo Excel (.xlsx) con detalle completo de deuda del Sistema de Cuentas Tributarias"
+    ],
+    "iconName": "download",
+    "category": "",
+    "href": "/services/deuda-sct"
+  },
+  {
+    "id": "pagos-sct",
+    "slug": "pagos-sct",
+    "title": "Pagos Sistema Cuentas Tributarias",
+    "description": "Descarga del historial de pagos realizados desde el Sistema de Cuentas Tributarias.",
+    "longDescription": "Automatiza la descarga del historial de pagos realizados desde el Sistema de Cuentas Tributarias del portal AFIP.\n\nEl bot accede al sistema, consulta los pagos efectuados por el contribuyente en el período solicitado y descarga el detalle: fecha de pago, impuesto, período fiscal, importe, medio de pago utilizado, etc.",
+    "output": [
+      "Archivo Excel (.xlsx) con historial de pagos del Sistema de Cuentas Tributarias"
+    ],
+    "iconName": "dollar",
+    "category": "",
+    "href": "/services/pagos-sct"
+  },
+  {
+    "id": "f931",
+    "slug": "f931",
+    "title": "Declaración F.931 - Seguridad Social",
+    "description": "Descarga de declaraciones F.931 desde el aplicativo Declaración en Línea de AFIP.",
+    "longDescription": "Automatiza la descarga de declaraciones F.931 (Seguridad Social) desde el aplicativo 'Declaración en Línea' del portal AFIP.\n\nEl bot ingresa al portal AFIP, selecciona la empresa representada y accede al detalle de las declaraciones F.931 presentadas dentro del rango de fechas solicitado. Por cada cliente, genera un archivo Excel con los datos completos del F.931: remuneraciones, aportes, contribuciones patronales y totales.",
+    "output": [
+      "Archivo Excel (.xlsx) con datos detallados del F.931 (remuneraciones, aportes, contribuciones)"
+    ],
+    "iconName": "users",
+    "category": "",
+    "href": "/services/f931"
+  },
+  {
+    "id": "libro-sueldos-digital",
+    "slug": "libro-sueldos-digital",
+    "title": "Libro de Sueldos Digital",
+    "description": "Obtención y descarga del Libro de Sueldos Digital desde el portal AFIP.",
+    "longDescription": "Automatiza la obtención y descarga del Libro de Sueldos Digital (LSD) disponible en el portal AFIP.\n\nEl bot selecciona el CUIT representado, recorre todos los períodos dentro del rango indicado y por cada liquidación de sueldos detectada genera el archivo PDF oficial del Libro de Sueldos. El proceso incluye validación de CUIT y genera un registro detallado en Excel con el resumen de todas las liquidaciones procesadas.",
+    "output": [
+      "Archivos PDF con los Libros de Sueldos por período",
+      "Archivo Excel consolidado con detalle de liquidaciones procesadas"
+    ],
     "iconName": "ledger",
-    "advantages": ["Mapeo dinámico de cuentas", "Validaciones previas", "Listo para Onvio"],
-    "href": "/services/asiento-costos"
+    "category": "",
+    "href": "/services/libro-sueldos-digital"
   },
   {
     "id": "mis-comprobantes",
     "slug": "mis-comprobantes",
-    "title": "Descarga Mis Comprobantes",
-    "description": "Bot de extracción AFIP con evidencias.",
-    "longDescription": "Baja masiva por CUIT, fechas y tipo, con manejo de popups y conversión XLS→XLSX.",
+    "title": "Mis Comprobantes",
+    "description": "Descarga masiva de comprobantes emitidos y recibidos desde el aplicativo Mis Comprobantes de AFIP.",
+    "longDescription": "Automatiza la descarga masiva de comprobantes emitidos y recibidos desde el aplicativo 'Mis Comprobantes' del portal AFIP.\n\nEl bot ingresa al aplicativo, filtra los comprobantes por período (fecha desde/hasta) y descarga dos conjuntos de archivos:\n\n1. Comprobantes Emitidos: Todas las facturas de venta generadas por el contribuyente\n2. Comprobantes Recibidos: Todas las facturas de compra recibidas de proveedores\n\nLos archivos se descargan en formato Excel (.xlsx) y CSV (.csv), permitiendo su posterior procesamiento e importación a sistemas contables. El bot maneja automáticamente la navegación entre pestañas y valida la correcta descarga de ambos tipos de comprobantes.",
+    "output": [
+      "Archivos Excel (.xlsx) con comprobantes emitidos y recibidos",
+      "Archivos CSV (.csv) con la misma información en formato alternativo"
+    ],
     "iconName": "download",
-    "advantages": ["Sesión robusta", "Soporte masivo", "Logs detallados"],
+    "category": "",
     "href": "/services/mis-comprobantes"
   },
   {
-    "id": "reporte-iva",
-    "slug": "reporte-iva",
-    "title": "Reporte IVA Ventas/Compras",
-    "description": "Consolidado de IVA por período.",
-    "longDescription": "Integra fuentes (Onvio/AFIP) y entrega un Excel final con tabs por circuito.",
-    "iconName": "table",
-    "advantages": ["Formato estándar", "Filtros por circuito", "Trazabilidad"],
-    "href": "/services/reporte-iva"
-  },
-  {
-    "id": "conciliacion-mp",
-    "slug": "conciliacion-mp",
-    "title": "Conciliación Mercado Pago",
-    "description": "Cruce de extractos vs ventas.",
-    "longDescription": "Normaliza fees y ajustes, detecta desvíos y genera asientos sugeridos.",
-    "iconName": "bank",
-    "advantages": ["Normalización de fees", "Alertas de desvío", "Asiento sugerido"],
-    "href": "/services/conciliacion-mp"
-  },
-  {
-    "id": "validador-cuit",
-    "slug": "validador-cuit",
-    "title": "Validador de CUIT Masivo",
-    "description": "Validación automática de CUITs en lotes.",
-    "longDescription": "Procesa archivos Excel con miles de CUITs, valida formato y estado en AFIP, genera reportes de errores.",
-    "iconName": "check",
-    "advantages": ["Validación en lotes", "Verificación AFIP", "Reporte de errores"],
-    "href": "/services/validador-cuit"
-  },
-  {
-    "id": "extractor-padron",
-    "slug": "extractor-padron",
-    "title": "Extractor Padrón A5",
-    "description": "Descarga automática del padrón de contribuyentes.",
-    "longDescription": "Bot que descarga y procesa el padrón A5 de AFIP, extrae datos específicos y genera bases actualizadas.",
-    "iconName": "database",
-    "advantages": ["Descarga automática", "Procesamiento inteligente", "Base actualizada"],
-    "href": "/services/extractor-padron"
-  },
-  {
-    "id": "monitor-vencimientos",
-    "slug": "monitor-vencimientos",
-    "title": "Monitor de Vencimientos",
-    "description": "Alertas automáticas de vencimientos fiscales.",
-    "longDescription": "Sistema de notificaciones que monitorea calendarios fiscales y envía alertas personalizadas por cliente.",
+    "id": "mis-facilidades",
+    "slug": "mis-facilidades",
+    "title": "Mis Facilidades",
+    "description": "Consulta y descarga de planes de facilidades de pago vigentes en AFIP.",
+    "longDescription": "Automatiza la consulta y descarga de información sobre planes de facilidades de pago vigentes en el portal AFIP.\n\nEl bot ingresa al aplicativo 'Mis Facilidades', consulta los planes de pago activos del contribuyente y descarga el detalle de cada facilidad vigente: cuotas, vencimientos, importes, estado de cumplimiento, etc.",
+    "output": [
+      "Archivos Excel (.xlsx) con información detallada de facilidades de pago vigentes"
+    ],
     "iconName": "calendar",
-    "advantages": ["Alertas personalizadas", "Calendario fiscal", "Notificaciones automáticas"],
-    "href": "/services/monitor-vencimientos"
+    "category": "",
+    "href": "/services/mis-facilidades"
   },
   {
-    "id": "generador-ddjj",
-    "slug": "generador-ddjj",
-    "title": "Generador DDJJ IVA",
-    "description": "Automatización de declaraciones juradas de IVA.",
-    "longDescription": "Procesa comprobantes, calcula posición de IVA y genera archivos para presentación en AFIP.",
+    "id": "nuestra-parte",
+    "slug": "nuestra-parte",
+    "title": "Nuestra Parte",
+    "description": "Obtención de información fiscal del aplicativo Nuestra Parte de AFIP.",
+    "longDescription": "Automatiza la obtención de la información fiscal disponible en el aplicativo 'Nuestra Parte' del portal AFIP.\n\nEl bot ingresa al sistema AFIP, accede al servicio 'Nuestra Parte' y descarga de forma segura el archivo oficial con los datos fiscales del contribuyente: impuestos inscriptos, regímenes, actividades declaradas, últimas presentaciones, etc.",
+    "output": [
+      "Archivo Excel (.xls) oficial descargado directamente desde AFIP con información fiscal del contribuyente"
+    ],
+    "iconName": "database",
+    "category": "",
+    "href": "/services/nuestra-parte"
+  },
+  {
+    "id": "bienes-personales-web",
+    "slug": "bienes-personales-web",
+    "title": "Bienes Personales Web",
+    "description": "Descarga de Declaraciones Juradas F.988 de Bienes Personales desde AFIP.",
+    "longDescription": "Automatiza la descarga de Declaraciones Juradas de Bienes Personales presentadas desde el aplicativo 'Bienes Personales Web' del portal AFIP.\n\nEl bot accede al sistema, selecciona el CUIT representado, consulta las declaraciones juradas F.988 presentadas en el período solicitado y descarga los archivos oficiales. Incluye validación de CUIT y manejo de representaciones múltiples.",
+    "output": [
+      "Archivos de declaraciones juradas de Bienes Personales descargados"
+    ],
     "iconName": "document",
-    "advantages": ["Cálculo automático", "Validaciones AFIP", "Archivo listo"],
-    "href": "/services/generador-ddjj"
+    "category": "",
+    "href": "/services/bienes-personales-web"
   },
   {
-    "id": "conciliador-bancario",
-    "slug": "conciliador-bancario",
-    "title": "Conciliador Bancario",
-    "description": "Conciliación automática de extractos bancarios.",
-    "longDescription": "Cruza movimientos bancarios con registros contables, identifica diferencias y sugiere ajustes.",
-    "iconName": "bank",
-    "advantages": ["Cruce automático", "Detección de diferencias", "Ajustes sugeridos"],
-    "href": "/services/conciliador-bancario"
+    "id": "retenciones-percepciones-217",
+    "slug": "retenciones-percepciones-217",
+    "title": "Retenciones y Percepciones 217",
+    "description": "Impuesto 217 - SICORE Ganancias. Descarga: Retenciones Impositivas y Retenciones Aduaneras SICORE.",
+    "longDescription": "Automatiza la descarga de retenciones y percepciones impositivas del aplicativo 'Mis Retenciones' del portal AFIP para el impuesto 217 (Ganancias).\n\nEl bot accede al aplicativo 'Mis Retenciones', filtra por período y descarga los archivos oficiales de retenciones y percepciones. Cuando hay grandes volúmenes de datos que superan el límite de AFIP ('Demasiados resultados para esta consulta'), el bot divide automáticamente la consulta por meses y consolida toda la información.\n\nLos archivos se generan en formato TXT (formato oficial AFIP) y se convierten automáticamente a Excel para facilitar su análisis.",
+    "output": [
+      "Archivos TXT con retenciones y percepciones impositivas del impuesto 217",
+      "Archivos Excel (.xlsx) con los mismos datos en formato tabular"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/retenciones-percepciones-217"
   },
   {
-    "id": "analizador-gastos",
-    "slug": "analizador-gastos",
-    "title": "Analizador de Gastos",
-    "description": "Categorización automática de gastos empresariales.",
-    "longDescription": "Clasifica gastos por tipo, centro de costo y deducibilidad fiscal usando IA y reglas personalizables.",
+    "id": "retenciones-percepciones-767",
+    "slug": "retenciones-percepciones-767",
+    "title": "Retenciones y Percepciones 767",
+    "description": "Impuesto 767 - SICORE Retenciones y Percepciones Varias. Descarga: Retenciones Impositivas, Retenciones Aduaneras y Percepciones.",
+    "longDescription": "Automatiza la descarga de retenciones y percepciones del aplicativo 'Mis Retenciones' del portal AFIP para el impuesto 767 (Retenciones y Percepciones Varias).\n\nSimilar al bot de Retenciones 217, pero enfocado en el régimen 767. Gestiona múltiples períodos de manera inteligente cuando hay grandes volúmenes de datos y genera archivos TXT y Excel.",
+    "output": [
+      "Archivos TXT y Excel (.xlsx) con retenciones y percepciones del impuesto 767"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/retenciones-percepciones-767"
+  },
+  {
+    "id": "retenciones-percepciones-787",
+    "slug": "retenciones-percepciones-787",
+    "title": "Retenciones y Percepciones 787",
+    "description": "Impuesto 787 - Ley Ganancias Art 79 Inc A, B y C. Descarga: Retenciones Impositivas y Percepciones.",
+    "longDescription": "Automatiza la descarga de retenciones según la Ley de Ganancias Artículo 79 Incisos A, B y C del aplicativo 'Mis Retenciones' del portal AFIP para el impuesto 787.",
+    "output": [
+      "Archivos TXT y Excel (.xlsx) con retenciones del impuesto 787"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/retenciones-percepciones-787"
+  },
+  {
+    "id": "retenciones-percepciones-219",
+    "slug": "retenciones-percepciones-219",
+    "title": "Retenciones y Percepciones 219",
+    "description": "Impuesto 219 - SICORE Bienes Personales. Descarga: Retenciones y Percepciones.",
+    "longDescription": "Automatiza la descarga de retenciones desde el aplicativo correspondiente del portal AFIP para el impuesto 219 (SICORE).\n\nEl bot consulta y descarga las retenciones y percepciones del régimen SICORE por período, generando archivos TXT y Excel.",
+    "output": [
+      "Archivos TXT y Excel (.xlsx) con retenciones del impuesto 219 SICORE"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/retenciones-percepciones-219"
+  },
+  {
+    "id": "retenciones-210",
+    "slug": "retenciones-210",
+    "title": "Retenciones 210",
+    "description": "Impuesto 210 - Ganancias Régimen Especial. Descarga: Retenciones.",
+    "longDescription": "Automatiza la descarga de retenciones desde el aplicativo correspondiente del portal AFIP para el impuesto 210 (Ganancias).\n\nEl bot consulta y descarga las retenciones del régimen 210 por período.",
+    "output": [
+      "Archivos TXT y Excel (.xlsx) con retenciones del impuesto 210"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/retenciones-210"
+  },
+  {
+    "id": "percepciones-939",
+    "slug": "percepciones-939",
+    "title": "Percepciones 939 - Impuesto PAÍS",
+    "description": "Impuesto 939 - Impuesto Para una Argentina Inclusiva y Solidaria. Descarga: Percepciones.",
+    "longDescription": "Automatiza la descarga de percepciones del Impuesto PAÍS desde el aplicativo correspondiente del portal AFIP para el impuesto 939 (Impuesto Para una Argentina Inclusiva y Solidaria).\n\nEl bot consulta y descarga las percepciones del régimen 939 por período.",
+    "output": [
+      "Archivos TXT y Excel (.xlsx) con percepciones del Impuesto PAÍS (939)"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/percepciones-939"
+  },
+  {
+    "id": "padron-registral",
+    "slug": "padron-registral",
+    "title": "Padrón Registral",
+    "description": "Descarga del Padrón Registral con información actualizada de contribuyentes desde AFIP.",
+    "longDescription": "Automatiza la descarga del Padrón Registral desde el portal AFIP.\n\nEl bot accede al aplicativo de Padrón Registral y descarga el archivo oficial con información actualizada de contribuyentes registrados.",
+    "output": [
+      "Archivo del Padrón Registral (formato según disponibilidad en AFIP)"
+    ],
+    "iconName": "database",
+    "category": "",
+    "href": "/services/padron-registral"
+  },
+  {
+    "id": "relacion-tecnica",
+    "slug": "relacion-tecnica",
+    "title": "Relación Técnica",
+    "description": "Consulta y descarga de la Relación Técnica de contribuyentes desde AFIP.",
+    "longDescription": "Automatiza la consulta y descarga de la Relación Técnica de contribuyentes desde el portal AFIP.\n\nEl bot accede al aplicativo correspondiente, consulta la información de relación técnica del contribuyente y descarga los archivos disponibles.",
+    "output": [
+      "Archivos con información de Relación Técnica"
+    ],
+    "iconName": "search",
+    "category": "",
+    "href": "/services/relacion-tecnica"
+  },
+  {
+    "id": "sifere",
+    "slug": "sifere",
+    "title": "SIFERE - Sistema Federal de Recaudación",
+    "description": "Consulta y descarga de información desde el Sistema Federal de Recaudación de AFIP.",
+    "longDescription": "Automatiza la consulta y descarga de información desde el Sistema Federal de Recaudación (SIFERE) del portal AFIP.\n\nEl bot accede al SIFERE, consulta los datos disponibles por período y descarga los archivos correspondientes.",
+    "output": [
+      "Archivos con información SIFERE"
+    ],
+    "iconName": "database",
+    "category": "",
+    "href": "/services/sifere"
+  },
+  {
+    "id": "onvio-listado-impuestos",
+    "slug": "onvio-listado-impuestos",
+    "title": "Onvio - Listado de Operaciones por Impuesto",
+    "description": "Extracción y descarga del listado de operaciones discriminadas por impuesto desde Onvio.",
+    "longDescription": "Automatiza la extracción y descarga del listado de operaciones por impuesto desde la plataforma Onvio (Thomson Reuters).\n\nEl bot ingresa a Onvio, navega hasta la sección correspondiente del cliente y descarga los reportes de operaciones discriminadas por impuesto.",
+    "output": [
+      "Archivos Excel (.xlsx) con listado de operaciones por impuesto"
+    ],
+    "iconName": "table",
+    "category": "",
+    "href": "/services/onvio-listado-impuestos"
+  },
+  {
+    "id": "onvio-comparacion-afip",
+    "slug": "onvio-comparacion-afip",
+    "title": "Onvio - Comparación AFIP",
+    "description": "Comparación entre datos de Onvio y AFIP para validar consistencia de comprobantes.",
+    "longDescription": "Automatiza el proceso de comparación entre datos de Onvio y AFIP para validar consistencia de comprobantes.\n\nEl bot extrae información de Onvio, la compara con datos descargados de AFIP (típicamente del bot 'Mis Comprobantes') y genera un reporte con las diferencias detectadas. Identifica comprobantes faltantes, duplicados o con datos inconsistentes.\n\nEl proceso incluye limpieza y transformación automática de los archivos Excel descargados: normaliza formatos, elimina caracteres especiales, unifica columnas y estructura los datos para facilitar el análisis comparativo.",
+    "output": [
+      "Archivo Excel (.xlsx) con reporte de comparación y diferencias detectadas"
+    ],
+    "iconName": "scale",
+    "category": "",
+    "href": "/services/onvio-comparacion-afip"
+  },
+  {
+    "id": "onvio-asiento-costos",
+    "slug": "onvio-asiento-costos",
+    "title": "Onvio - Asiento de Costos",
+    "description": "Generación de asientos contables de costos desde información extraída de Onvio.",
+    "longDescription": "Automatiza la generación de asientos contables de costos desde información extraída de Onvio.\n\nEl bot procesa datos de costos de la plataforma Onvio y genera los asientos contables correspondientes en formato estructurado para su posterior importación a sistemas contables.",
+    "output": [
+      "Archivos con asientos contables de costos (formato compatible con sistemas contables)"
+    ],
+    "iconName": "ledger",
+    "category": "",
+    "href": "/services/onvio-asiento-costos"
+  },
+  {
+    "id": "onvio-reporte-ganancias",
+    "slug": "onvio-reporte-ganancias",
+    "title": "Onvio - Reporte Ganancias",
+    "description": "Extracción y procesamiento de información para el reporte de Ganancias desde Onvio.",
+    "longDescription": "Automatiza la extracción y procesamiento de información desde Onvio para la elaboración del reporte de Ganancias.\n\nEl bot navega por la plataforma Onvio, extrae los datos necesarios para el armado de la declaración de Ganancias y genera reportes estructurados.",
+    "output": [
+      "Archivos Excel (.xlsx) con información para declaración de Ganancias"
+    ],
     "iconName": "chart",
-    "advantages": ["Clasificación IA", "Reglas personalizables", "Análisis fiscal"],
-    "href": "/services/analizador-gastos"
+    "category": "",
+    "href": "/services/onvio-reporte-ganancias"
   },
   {
-    "id": "digitalizador-facturas",
-    "slug": "digitalizador-facturas",
-    "title": "Digitalizador de Facturas",
-    "description": "OCR avanzado para facturas en papel.",
-    "longDescription": "Convierte facturas físicas en datos estructurados usando OCR e IA para reconocimiento de campos.",
-    "iconName": "scan",
-    "advantages": ["OCR avanzado", "Reconocimiento IA", "Datos estructurados"],
-    "href": "/services/digitalizador-facturas"
-  },
-  {
-    "id": "calculadora-sueldos",
-    "slug": "calculadora-sueldos",
-    "title": "Calculadora de Sueldos",
-    "description": "Cálculo automático de liquidaciones de sueldo.",
-    "longDescription": "Procesa novedades, aplica convenios y escalas, calcula aportes y contribuciones automáticamente.",
-    "iconName": "users",
-    "advantages": ["Convenios actualizados", "Cálculo automático", "Recibos digitales"],
-    "href": "/services/calculadora-sueldos"
-  },
-  {
-    "id": "tracker-retenciones",
-    "slug": "tracker-retenciones",
-    "title": "Tracker de Retenciones",
-    "description": "Seguimiento de retenciones y percepciones.",
-    "longDescription": "Registra y clasifica retenciones sufridas, calcula créditos aplicables y genera reportes de posición.",
-    "iconName": "target",
-    "advantages": ["Registro automático", "Cálculo de créditos", "Reportes fiscales"],
-    "href": "/services/tracker-retenciones"
-  },
-  {
-    "id": "optimizador-stocks",
-    "slug": "optimizador-stocks",
-    "title": "Optimizador de Stocks",
-    "description": "Análisis predictivo de inventarios.",
-    "longDescription": "Analiza patrones de venta, predice demanda y sugiere niveles óptimos de stock por producto.",
-    "iconName": "box",
-    "advantages": ["Análisis predictivo", "Optimización automática", "Alertas de stock"],
-    "href": "/services/optimizador-stocks"
-  },
-  {
-    "id": "generador-reportes",
-    "slug": "generador-reportes",
-    "title": "Generador de Reportes",
-    "description": "Reportes financieros automáticos personalizados.",
-    "longDescription": "Crea dashboards y reportes financieros automáticos con métricas KPI y análisis de tendencias.",
-    "iconName": "presentation",
-    "advantages": ["Dashboards automáticos", "KPIs personalizados", "Análisis de tendencias"],
-    "href": "/services/generador-reportes"
-  },
-  {
-    "id": "validador-cfdi",
-    "slug": "validador-cfdi",
-    "title": "Validador CFDI México",
-    "description": "Validación de comprobantes fiscales mexicanos.",
-    "longDescription": "Valida estructura y autenticidad de CFDIs, verifica timbrado SAT y genera reportes de cumplimiento.",
-    "iconName": "shield",
-    "advantages": ["Validación SAT", "Verificación de timbrado", "Cumplimiento fiscal"],
-    "href": "/services/validador-cfdi"
-  },
-  {
-    "id": "asistente-cobranzas",
-    "slug": "asistente-cobranzas",
-    "title": "Asistente de Cobranzas",
-    "description": "Automatización del proceso de cobranzas.",
-    "longDescription": "Gestiona cuentas por cobrar, envía recordatorios automáticos y genera reportes de morosidad.",
-    "iconName": "dollar",
-    "advantages": ["Recordatorios automáticos", "Gestión de morosidad", "Reportes de cobranza"],
-    "href": "/services/asistente-cobranzas"
-  },
-  {
-    "id": "clasificador-comprobantes",
-    "slug": "clasificador-comprobantes",
-    "title": "Clasificador de Comprobantes",
-    "description": "IA para clasificación automática de documentos.",
-    "longDescription": "Clasifica comprobantes por tipo, proveedor y categoría contable usando inteligencia artificial.",
+    "id": "onvio-subdiarios",
+    "slug": "onvio-subdiarios",
+    "title": "Onvio - Subdiarios Contables",
+    "description": "Extracción de subdiarios contables (Ventas, Compras, etc.) desde Onvio.",
+    "longDescription": "Automatiza la extracción de subdiarios contables desde la plataforma Onvio.\n\nEl bot ingresa a Onvio, navega hasta la sección de subdiarios del cliente y descarga los registros contables desagregados (Subdiario de Ventas, Compras, etc.).",
+    "output": [
+      "Archivos Excel (.xlsx) con subdiarios contables"
+    ],
     "iconName": "folder",
-    "advantages": ["Clasificación IA", "Aprendizaje automático", "Organización inteligente"],
-    "href": "/services/clasificador-comprobantes"
+    "category": "",
+    "href": "/services/onvio-subdiarios"
   }
 ]
