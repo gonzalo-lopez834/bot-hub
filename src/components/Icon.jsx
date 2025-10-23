@@ -169,6 +169,21 @@ export default function Icon({ name = 'default', className = 'w-6 h-6' }) {
         <path strokeWidth="1.5" d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
       </svg>
     ),
+    robot: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <rect x="3" y="4" width="18" height="16" rx="2" ry="2" strokeWidth="1.5" />
+        <rect x="8" y="10" width="2" height="2" rx="0.5" strokeWidth="1.5" fill="currentColor" />
+        <rect x="14" y="10" width="2" height="2" rx="0.5" strokeWidth="1.5" fill="currentColor" />
+        <path strokeWidth="1.5" d="M10 14h4" />
+        <line x1="1" y1="12" x2="3" y2="12" strokeWidth="1.5" />
+        <line x1="21" y1="12" x2="23" y2="12" strokeWidth="1.5" />
+      </svg>
+    ),
+    lightning: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
+        <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" strokeWidth="1.5" />
+      </svg>
+    ),
     default: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
         <circle cx="12" cy="12" r="8" strokeWidth="1.5" />

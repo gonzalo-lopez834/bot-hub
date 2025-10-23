@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useContactForm } from '../hooks/useContactForm'
 import { getColorSchemeForService } from '../utils/colorSchemes'
 
-export default function FormsDetail({ service, colorScheme = null, className = 'mt-8' }) {
+export default function FormsDetail({ service, colorScheme = null, className = 'mt-8', isCustomBot = false }) {
   const alertRef = useRef(null)
 
   // Usar el colorScheme proporcionado o generar uno basado en el service ID
@@ -19,7 +19,7 @@ export default function FormsDetail({ service, colorScheme = null, className = '
     submit,
     reset,
     setValues,
-  } = useContactForm({ serviceId: service?.id || '' })
+  } = useContactForm({ serviceId: service?.id || '', isCustomBot })
 
   // Sync serviceId when the selected service changes
   useEffect(() => {
@@ -68,11 +68,12 @@ export default function FormsDetail({ service, colorScheme = null, className = '
     <section className={rootClass} aria-labelledby="contact-title">
       <div className="text-center mb-8">
         <h2 id="contact-title" className={`text-2xl font-bold ${activeColorScheme.title} mb-3`}>
-          Realiza una consulta sobre nuestro Agente
+          {isCustomBot ? 'Solicita tu Agente Personalizado' : 'Realiza una consulta sobre nuestro Agente'}
         </h2>
         <p className="text-gray-600 mb-6">
-          Completa el formulario para recibir más detalles sobre{' '}
-          <span className="font-semibold text-gray-800">{service?.title}</span>
+          {isCustomBot
+            ? 'Completa el formulario con los detalles de lo que necesitas automatizar'
+            : `Completa el formulario para recibir más detalles sobre ${service?.title || 'nuestros servicios'}`}
         </p>
       </div>
 
@@ -161,29 +162,139 @@ export default function FormsDetail({ service, colorScheme = null, className = '
           )}
         </div>
 
-        <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-2">
-            ¿En qué podemos ayudarte?
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            placeholder="Describe tu consulta sobre nuestro Agente..."
-            className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200 resize-none`}
-            value={values.message}
-            onChange={onChange}
-            onBlur={onBlur}
-            aria-invalid={Boolean(errors.message)}
-            aria-describedby={errors.message ? 'message-err' : undefined}
-          />
-          {errors.message && (
-            <p id="message-err" className="mt-2 text-sm text-red-600 flex items-center gap-1">
-              <span className="text-red-500">⚠</span>
-              {errors.message}
-            </p>
-          )}
-        </div>
+        {isCustomBot && (
+          <>
+            <div>
+              <label htmlFor="processType" className="block text-sm font-semibold text-gray-800 mb-2">
+                Tipo de Proceso
+              </label>
+              <select
+                id="processType"
+                name="processType"
+                className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200`}
+                value={values.processType}
+                onChange={onChange}
+                onBlur={onBlur}
+                aria-invalid={Boolean(errors.processType)}
+                aria-describedby={errors.processType ? 'processType-err' : undefined}
+              >
+                <option value="">Selecciona el tipo de proceso...</option>
+                <option value="afip">Trámites AFIP</option>
+                <option value="onvio">Gestión Onvio</option>
+                <option value="nomina">Nómina y Sueldos</option>
+                <option value="facturas">Lectura/Gestión de Facturas</option>
+                <option value="reportes">Reportes y Consolidación</option>
+                <option value="otro">Otro</option>
+              </select>
+              {errors.processType && (
+                <p id="processType-err" className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                  <span className="text-red-500">⚠</span>
+                  {errors.processType}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="processDescription" className="block text-sm font-semibold text-gray-800 mb-2">
+                Descripción del Proceso
+              </label>
+              <textarea
+                id="processDescription"
+                name="processDescription"
+                rows={4}
+                placeholder="Cuéntanos qué necesitas automatizar: sistema de origen, qué datos procesar, formato de salida esperado, etc."
+                className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200 resize-none`}
+                value={values.processDescription}
+                onChange={onChange}
+                onBlur={onBlur}
+                aria-invalid={Boolean(errors.processDescription)}
+                aria-describedby={errors.processDescription ? 'processDescription-err' : undefined}
+              />
+              {errors.processDescription && (
+                <p id="processDescription-err" className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                  <span className="text-red-500">⚠</span>
+                  {errors.processDescription}
+                </p>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="dataVolume" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Volumen de Datos (opcional)
+                </label>
+                <select
+                  id="dataVolume"
+                  name="dataVolume"
+                  className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200`}
+                  value={values.dataVolume}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                >
+                  <option value="">Selecciona volumen...</option>
+                  <option value="bajo">Bajo (&lt; 100 registros)</option>
+                  <option value="medio">Medio (100 - 1000 registros)</option>
+                  <option value="alto">Alto (1000 - 10000 registros)</option>
+                  <option value="muy-alto">Muy Alto (&gt; 10000 registros)</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="timeline" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Timeline Deseado
+                </label>
+                <select
+                  id="timeline"
+                  name="timeline"
+                  className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200`}
+                  value={values.timeline}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  aria-invalid={Boolean(errors.timeline)}
+                  aria-describedby={errors.timeline ? 'timeline-err' : undefined}
+                >
+                  <option value="">Selecciona timeline...</option>
+                  <option value="urgente">Urgente (1-2 semanas)</option>
+                  <option value="corto">Corto Plazo (2-4 semanas)</option>
+                  <option value="medio">Medio Plazo (1-2 meses)</option>
+                  <option value="flexible">Flexible</option>
+                </select>
+                {errors.timeline && (
+                  <p id="timeline-err" className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                    <span className="text-red-500">⚠</span>
+                    {errors.timeline}
+                  </p>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        {!isCustomBot && (
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-2">
+              ¿En qué podemos ayudarte?
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={4}
+              placeholder="Describe tu consulta sobre nuestro Agente..."
+              className={`w-full rounded-xl border-0 bg-white/70 backdrop-blur-sm px-4 py-3 text-gray-900 placeholder-gray-500 shadow-sm ring-1 ring-gray-200 focus:ring-2 ${inputFocusClass} focus:bg-white/90 transition-all duration-200 resize-none`}
+              value={values.message}
+              onChange={onChange}
+              onBlur={onBlur}
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? 'message-err' : undefined}
+            />
+            {errors.message && (
+              <p id="message-err" className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                <span className="text-red-500">⚠</span>
+                {errors.message}
+              </p>
+            )}
+          </div>
+        )}
 
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <button
@@ -200,7 +311,7 @@ export default function FormsDetail({ service, colorScheme = null, className = '
                 Enviando...
               </span>
             ) : (
-              'Solicitar informacion'
+              isCustomBot ? 'Solicitar Propuesta' : 'Solicitar Información'
             )}
           </button>
 
