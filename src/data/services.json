@@ -70,7 +70,7 @@
     "slug": "checklist",
     "title": "CheckList de Ganancias",
     "description": "Verificación y control de cumplimiento de obligaciones fiscales mediante procesamiento local.",
-    "longDescription": "Bot de verificación y control de cumplimiento de obligaciones fiscales que procesa archivos Excel locales de declaraciones de Ganancias.\n\nA diferencia de otros bots, este NO descarga información de AFIP sino que procesa archivos ya descargados previamente (declaraciones F.711). El bot lee archivos Excel de Ganancias Personas Físicas, extrae valores clave como 'Patrimonio neto al cierre' y 'Total Impuesto Determinado' desde hojas específicas, y genera un reporte consolidado tipo checklist.\n\nEl proceso incluye limpieza y transformación automática de los datos: normaliza nombres de contribuyentes, elimina caracteres especiales en razones sociales, valida formatos de CUIT y consolida información de múltiples períodos facilitando la revisión rápida del cumplimiento de obligaciones.",
+    "longDescription": "Bot de verificación y control de cumplimiento de obligaciones fiscales que procesa archivos Excel de declaraciones de Ganancias.\n\nA diferencia de otros bots, este no descarga información de AFIP sino que procesa archivos ya descargados previamente (declaraciones F.711). El bot lee archivos Excel de Ganancias Personas Físicas, extrae valores clave desde múltiples hojas específicas y genera un reporte consolidado tipo checklist.\n\nEl bot extrae automáticamente datos como: Patrimonio neto al cierre, Total Impuesto Determinado, Saldo a pagar/favor, Bienes Personales (impuesto y saldos), retenciones, percepciones, dividendos, ventas, honorarios de director, sueldos en relación de dependencia, jubilaciones, ingresos por alquileres, intereses de plazos fijos, ingresos monotributo, donaciones recibidas y más.\n\nEl proceso incluye limpieza y transformación automática de los datos: normaliza nombres de contribuyentes, elimina caracteres especiales en razones sociales, valida formatos de CUIT y consolida información de múltiples períodos (2022, 2023, 2024) facilitando la revisión rápida del cumplimiento de obligaciones.",
     "output": [
       "Archivo Excel consolidado (check_list.xlsx) con resumen de obligaciones y valores clave extraídos",
       "Log de procesamiento con detalles de cada contribuyente procesado"
@@ -450,5 +450,56 @@
     "iconName": "folder",
     "category": "",
     "href": "/services/onvio-subdiarios"
+  },
+  {
+    "id": "recibos-veps-casas-particulares",
+    "slug": "recibos-veps-casas-particulares",
+    "title": "Creación de Recibos y VEPs - Casas Particulares",
+    "description": "Automatización del ciclo completo de liquidación de sueldos: generación de recibos PDF y VEPs de pago.",
+    "longDescription": "Automatiza el ciclo completo de liquidación de sueldos para trabajadores de casas particulares a través del portal AFIP, integrando la creación de recibos y la generación de Volantes Electrónicos de Pago (VEPs).\n\nFASE 1: Creación de Recibos de Liquidación\n\nEl bot procesa un archivo Excel con datos de empleadores y empleados (CUIT, períodos, remuneraciones, conceptos, etc.), ingresa al régimen AFIP de Casas Particulares, completa automáticamente los formularios de liquidación de sueldos con los datos proporcionados, y genera los recibos oficiales en formato PDF.\n\nPara cada empleador y trabajador realiza: autenticación en AFIP con credenciales del empleador, selección del período de liquidación, ingreso de datos de remuneración (salario, horas trabajadas, antigüedad, SAC), identificación y agregación de conceptos adicionales (viáticos, gratificaciones, vacaciones, descuentos de aportes, otros), validación que el total del recibo coincida con el neto esperado, y descarga del PDF oficial.\n\nFASE 2: Generación de VEPs\n\nUna vez generados los recibos, el bot procesa un archivo Excel con datos de empleadores (CUIT, credenciales, períodos, medio de pago), ingresa nuevamente al régimen AFIP, navega hacia la sección \"PAGAR MES ACTUAL\", selecciona el medio de pago especificado (Pago Electrónico, débito en cuenta, tarjeta de crédito, etc.) y completa el proceso de pago generando automáticamente el VEP.\n\nValidaciones y Transformaciones\n\nEl proceso incluye validaciones de integridad: verifica que el CUIT del empleado coincida con el registrado en AFIP, detecta credenciales inválidas o captchas en el login, valida formatos de CUIT, y genera reportes de error detallados cuando hay inconsistencias.\n\nEl bot también realiza limpieza y transformación automática de los datos: normaliza números de CUIT, maneja formatos de fecha (DD/MM/AA y AAAA-MM-DD), formatea importes a dos decimales, sanitiza nombres de contribuyentes y trabajadores para los nombres de archivo, y genera archivos con nombres estandarizados.",
+    "output": [
+      "Archivos PDF con los recibos de liquidación de sueldos (uno por empleador/trabajador/período)",
+      "Archivos XLS con los VEPs generados (descargados desde AFIP)",
+      "Archivos Excel consolidados con el estado de cada liquidación y VEP procesados",
+      "Capturas de pantalla como evidencia operativa en caso de errores"
+    ],
+    "iconName": "dollar",
+    "category": "",
+    "href": "/services/recibos-veps-casas-particulares"
+  },
+  {
+    "id": "nomina-obra-social",
+    "slug": "nomina-obra-social",
+    "title": "Consulta de Nómina y Obra Social",
+    "description": "Automatización integral de consultas de nómina desde ANSES y datos de obra social desde AFIP.",
+    "longDescription": "Automatiza la consulta integral de información de nómina y datos de obra social para empleados, integrando datos desde ANSES y AFIP en un único proceso.\n\nFASE 1: Descarga de Recibos de Nómina desde ANSES\n\nEl bot procesa un archivo Excel con datos de empleados (CUIL, nombre y apellido, organizados por empresa en diferentes hojas), ingresa al portal de ANSES (servicioswww.anses.gob.ar), consulta cada empleado por su CUIL y descarga automáticamente los recibos de nómina en formato PDF.\n\nPara cada empleado realiza: ingreso del CUIL en el formulario de búsqueda, validación de que el empleado tenga obra social registrada, obtención de los datos de obra social (descripción y código), descarga del recibo PDF oficial desde ANSES, y validación de que el archivo se descargó correctamente.\n\nFASE 2: Consulta de Obra Social en AFIP\n\nUna vez descargados los recibos de ANSES, el bot consulta información complementaria en AFIP. Accede al portal de AFIP, busca el aplicativo \"Declaración en línea\", realiza login con las credenciales de la empresa, y obtiene información de obra social vinculada del empleado (si existe).\n\nEl bot maneja automáticamente la navegación entre ventanas, selecciona representantes autorizados si es necesario, y extrae los datos de obra social disponibles en el sistema AFIP para validación cruzada con la información de ANSES.\n\nValidaciones y Transformaciones\n\nEl proceso incluye validaciones robustas: verifica que cada empleado tenga obra social registrada (descarta aquellos sin OS), valida formatos de CUIL, detecta errores de credenciales en AFIP, y genera reportes de error detallados para cada intento fallido.\n\nEl bot también realiza limpieza y transformación automática de los datos y estructura los resultados en Excel consolidado con estado de cada consulta.",
+    "output": [
+      "Archivos PDF con recibos de nómina descargados desde ANSES (uno por empleado/período)",
+      "Archivo Excel consolidado con el estado de cada consulta (Exitoso/Sin obra social/Error)",
+      "Datos de Obra Social: Descripción y código de obra social por cada empleado consultado",
+      "Organización por empresa: Recibos y datos organizados en carpetas separadas según cada empresa",
+      "Capturas de pantalla como evidencia operativa en caso de errores"
+    ],
+    "iconName": "users",
+    "category": "",
+    "href": "/services/nomina-obra-social"
+  },
+  {
+    "id": "lector-facturas",
+    "slug": "lector-facturas",
+    "title": "Lector de Facturas",
+    "description": "Extracción inteligente de datos fiscales de facturas de ventas y compras mediante IA avanzada.",
+    "longDescription": "Automatiza la extracción inteligente de datos fiscales de facturas mediante Inteligencia Artificial, procesando documentos de ventas y compras en diferentes formatos.\n\nFASE 1: Lectura de Facturas de Ventas\n\nEl bot procesa facturas de ventas en formato PDF e imágenes (JPG, JPEG, PNG), aplicando inteligencia artificial especializada para extraer automáticamente todos los datos fiscales relevantes.\n\nPara cada factura realiza: conversión automática de imágenes a PDF de alta calidad, detección del tipo de comprobante (Factura A, Factura B, Factura C, Notas de Crédito/Débito, etc.), extracción completa de datos fiscales AFIP (punto de venta, número, CAE, fechas, datos del cliente, importes, detalles de IVA), validación matemática automática de totales, y generación de estructura JSON con los datos extraídos.\n\nFASE 2: Lectura de Facturas de Compras\n\nEl bot procesa facturas de compras (recibidas de proveedores) con las mismas capacidades, adaptadas para compras. Realiza: conversión automática de imágenes, limpieza de duplicados ARCA (mantiene solo el original), corrección de rotación y eliminación de páginas en blanco, extracción completa de datos fiscales con identificación automática del proveedor, validación de documentos fiscales válidos, y generación de reportes consolidados.\n\nCapacidades Avanzadas\n\nEl bot incluye funcionalidades sofisticadas: identifica automáticamente más de 80 tipos de comprobantes normalizados según AFIP, detecta y elimina duplicados de facturas ARCA diferenciando entre originales y duplicados/triplicados, realiza validación cruzada de datos fiscales con auditoría forense para discrepancias, corrige automáticamente errores cuando es posible, y normaliza condiciones de IVA y tipos de comprobante.\n\nEl bot también maneja múltiples formatos de entrada: acepta PDFs nativos, imágenes escaneadas de facturas, fotografías desde celular, y capturas de pantalla, convirtiendo automáticamente todas las imágenes a PDF de alta resolución antes del procesamiento.",
+    "output": [
+      "Archivos JSON estructurados con datos fiscales extraídos (por cada factura procesada)",
+      "Archivo Excel consolidado con dos hojas: Facturas (resumen) e Items (detalles de productos/servicios)",
+      "Validación de integridad: Verificación matemática de totales y CAE",
+      "Identificación de receptores/proveedores: CUIT y razón social validados automáticamente",
+      "Indicadores de confianza sobre la calidad de extracción de cada documento",
+      "Organización por tipo: Facturas de ventas y compras procesadas y reportadas separadamente"
+    ],
+    "iconName": "document",
+    "category": "",
+    "href": "/services/lector-facturas"
   }
 ]
