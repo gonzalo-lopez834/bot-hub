@@ -4,7 +4,7 @@ import { useScrollDetection } from '../hooks/useScrollDetection.js';
 
 const menuItems = [ 
   { label: 'Inicio', ariaLabel: 'Ir a la página principal', link: '/' },
-  { label: 'Categorías', ariaLabel: 'Ver categorías de servicios', link: '/' },
+  { label: 'Categorías', ariaLabel: 'Ver categorías de servicios', link: '/', hidden: true },
   { label: 'Contacto', ariaLabel: 'Contactar con nosotros', link: '/contact' },
 ];
 
@@ -67,6 +67,7 @@ export default function Navbar() {
         {/* Navegación Pills */}
         <nav className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           {menuItems.map((item) => (
+            !item.hidden && (
             <NavLink
               key={item.label}
               to={item.link}
@@ -82,6 +83,7 @@ export default function Navbar() {
             >
               {item.label}
             </NavLink>
+            )
           ))}
         </nav>
 
