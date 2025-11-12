@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 /** Valida email simple */
 function isEmail(value) {
@@ -60,7 +61,7 @@ export function useContactForm(initial = {}) {
     return Object.keys(errs).length === 0
   }, [values, isCustomBot])
 
-  /** Envía el formulario al backend API */
+  /** Envía el formulario usando EmailJS */
   const submit = useCallback(async () => {
     const errs = validate(values, isCustomBot)
     setErrors(errs)
@@ -69,22 +70,31 @@ export function useContactForm(initial = {}) {
     try {
       setStatus('loading')
       
-      // Determinar la URL del API (desarrollo o producción)
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+      // Configuración de EmailJS
+      const SERVICE_ID = 'service_6rce20y'
+      const TEMPLATE_ID_CONSULTATION = 'template_to8jewa'
+      const TEMPLATE_ID_BOT = 'template_3bm957d'
+      const PUBLIC_KEY = '9dwB7eVTdTxVk9nX-'
       
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...values, isCustomBot }),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || 'Error al enviar el formulario')
+      const TEMPLATE_ID = isCustomBot ? TEMPLATE_ID_BOT : TEMPLATE_ID_CONSULTATION
+      
+      // Preparar los datos para el template
+      const templateParams = {
+        from_name: values.name,
+        from_email: values.email,
+        phone: values.phone || 'No proporcionado',
+        message: values.message || '',
+        service_id: values.serviceId || 'N/A',
+        // Campos específicos para bot personalizado
+        process_type: values.processType || '',
+        process_description: values.processDescription || '',
+        data_volume: values.dataVolume || 'No especificado',
+        timeline: values.timeline || '',
       }
 
+      // Enviar email usando EmailJS
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      
       setStatus('success')
     } catch (error) {
       console.error('Error submitting form:', error)
