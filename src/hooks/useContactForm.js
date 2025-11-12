@@ -60,7 +60,7 @@ export function useContactForm(initial = {}) {
     return Object.keys(errs).length === 0
   }, [values, isCustomBot])
 
-  /** Simula un envío UI-only (sin backend). Reemplazar cuando tengamos contact.url */
+  /** Envía el formulario al backend API */
   const submit = useCallback(async () => {
     const errs = validate(values, isCustomBot)
     setErrors(errs)
@@ -68,12 +68,26 @@ export function useContactForm(initial = {}) {
 
     try {
       setStatus('loading')
-      // Simulación de red
-      await new Promise((r) => setTimeout(r, 700))
-      // Si en el futuro tenemos endpoint:
-      // await fetch(contact.url, { method:'POST', body: JSON.stringify(values) ... })
+      
+      // Determinar la URL del API (desarrollo o producción)
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+      
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...values, isCustomBot }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Error al enviar el formulario')
+      }
+
       setStatus('success')
-    } catch {
+    } catch (error) {
+      console.error('Error submitting form:', error)
       setStatus('error')
     }
   }, [values, isCustomBot])
